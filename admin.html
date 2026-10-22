@@ -3,196 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Sio Dhago | Blending Culture with Trends</title>
+    <title>Sio Dhago | Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
-                extend: {
-                    fontFamily: { sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'sans-serif'] }
-                }
+                extend: { fontFamily: { sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'sans-serif'] } }
             }
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .glass-hdr { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(24px) saturate(190%); border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
-        .dark .glass-hdr { background: rgba(15, 15, 20, 0.55); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-        .glass-card { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 12px 32px 0 rgba(31, 38, 135, 0.07); }
-        .dark .glass-card { background: rgba(25, 25, 32, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.37); }
-        .glass-pill { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.6); }
-        .dark .glass-pill { background: rgba(30, 30, 40, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .glass-modal { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.6); }
-        .dark .glass-modal { background: rgba(18, 18, 24, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .ambient-glow { position: absolute; width: 45vw; height: 45vw; max-width: 500px; max-height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(225, 29, 72, 0.22) 0%, rgba(168, 85, 247, 0.15) 50%, transparent 70%); filter: blur(70px); z-index: -1; pointer-events: none; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .glass-hdr { background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(28px); border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
+        .dark .glass-hdr { background: rgba(15, 15, 22, 0.65); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-card { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 16px 40px rgba(31, 38, 135, 0.06); }
+        .dark .glass-card { background: rgba(24, 24, 32, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); }
+        .glass-pill { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.6); }
+        .dark .glass-pill { background: rgba(30, 30, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass-modal { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(35px); border: 1px solid rgba(255, 255, 255, 0.6); }
+        .dark .glass-modal { background: rgba(18, 18, 26, 0.88); border: 1px solid rgba(255, 255, 255, 0.12); }
     </style>
 </head>
-<body class="bg-slate-100 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans min-h-screen flex flex-col pb-24 md:pb-0">
+<body class="bg-slate-100 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans min-h-screen flex flex-col pb-20">
 
-    <div class="ambient-glow top-0 left-1/4"></div>
-    <div id="toast-container" class="fixed top-20 right-4 left-4 sm:left-auto sm:right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
-
-    <header class="fixed top-0 inset-x-0 z-40 glass-hdr h-16 sm:h-20 flex items-center justify-between px-4 sm:px-8">
-        <a href="#" class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/25">
-                <i class="fa-solid fa-yarn text-lg"></i>
-            </div>
-            <span class="text-lg font-bold bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">Sio Dhago</span>
-        </a>
+    <header class="fixed top-0 inset-x-0 z-40 glass-hdr h-20 flex items-center justify-between px-6 sm:px-8">
         <div class="flex items-center space-x-3">
-            <button onclick="toggleCartDrawer()" class="relative px-4 py-2 rounded-full bg-gradient-to-r from-rose-500 to-pink-600 text-white font-semibold text-xs flex items-center space-x-2 shadow-lg">
-                <i class="fa-solid fa-bag-shopping text-sm"></i>
-                <span>Bag</span>
-                <span id="cart-badge-desktop" class="bg-white text-rose-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
-            </button>
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-purple-600 flex items-center justify-center text-white shadow-lg">
+                <i class="fa-solid fa-gauge-high text-lg"></i>
+            </div>
+            <div>
+                <span class="text-lg font-extrabold bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">Sio Dhago Admin</span>
+                <p class="text-[10px] text-zinc-500">Live Orders Dashboard</p>
+            </div>
+        </div>
+        <div class="glass-pill px-3 py-1.5 rounded-full text-xs font-bold flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Live Sync Active</span>
         </div>
     </header>
 
-    <main class="flex-grow pt-24 max-w-7xl mx-auto px-4 sm:px-8 w-full">
-        <section class="py-8 text-center">
-            <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight mb-4">Cultured Heritage, <span class="bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">Spun into Modern Elegance.</span></h1>
-            <p class="text-xs sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-8">Handcrafted in Nepal with 100% sustainable organic wool & cotton yarn.</p>
+    <main class="flex-grow pt-28 max-w-7xl mx-auto w-full px-4 sm:px-8">
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="glass-card p-6 rounded-3xl">
+                <span class="text-xs font-bold text-zinc-500 uppercase">Total Revenue</span>
+                <div id="stat-revenue" class="text-2xl font-extrabold mt-1">Rs. 0</div>
+            </div>
+            <div class="glass-card p-6 rounded-3xl">
+                <span class="text-xs font-bold text-zinc-500 uppercase">Total Orders</span>
+                <div id="stat-orders" class="text-2xl font-extrabold mt-1">0</div>
+            </div>
+            <div class="glass-card p-6 rounded-3xl">
+                <span class="text-xs font-bold text-zinc-500 uppercase">Pending</span>
+                <div id="stat-pending" class="text-2xl font-extrabold mt-1 text-amber-600">0</div>
+            </div>
+            <div class="glass-card p-6 rounded-3xl">
+                <span class="text-xs font-bold text-zinc-500 uppercase">Avg Order Value</span>
+                <div id="stat-aov" class="text-2xl font-extrabold mt-1">Rs. 0</div>
+            </div>
         </section>
 
-        <section id="shop" class="py-6">
-            <h2 class="text-2xl font-extrabold mb-6">Curated Creations</h2>
-            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+        <section class="glass-card rounded-3xl p-6">
+            <h2 class="text-xl font-extrabold mb-4">Orders Management</h2>
+            <div class="overflow-x-auto rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="glass-hdr text-[10px] font-extrabold uppercase text-zinc-500">
+                            <th class="p-3.5">Order ID</th>
+                            <th class="p-3.5">Customer</th>
+                            <th class="p-3.5">Summary</th>
+                            <th class="p-3.5">Total</th>
+                            <th class="p-3.5">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-body" class="divide-y divide-zinc-200/50 dark:divide-zinc-800/50 text-xs"></tbody>
+                </table>
+            </div>
         </section>
     </main>
 
-    <!-- CART DRAWER -->
-    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md glass-modal flex flex-col shadow-2xl h-full">
-                <div class="p-5 border-b border-zinc-200/50 dark:border-zinc-800/50 flex items-center justify-between">
-                    <h3 class="text-sm font-bold flex items-center gap-2"><i class="fa-solid fa-bag-shopping text-rose-500"></i> Shopping Bag</h3>
-                    <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-full glass-pill flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
-                <div class="p-5 border-t border-zinc-200/50 dark:border-zinc-800/50 glass-hdr space-y-2">
-                    <div class="flex justify-between text-sm font-extrabold mb-2"><span>Subtotal</span><span id="cart-subtotal">Rs. 0</span></div>
-                    <input id="co-name" type="text" placeholder="Your full name" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                    <input id="co-phone" type="tel" placeholder="Phone number" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                    <input id="co-address" type="text" placeholder="Delivery address" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                    <button onclick="completeWebCheckout()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-rose-600 to-purple-600 text-white font-bold text-xs shadow-lg">Place Order Now</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const products = [
-            { id: 1, name: "Boho Sunset Granny Cardigan", category: "Apparel", priceNPR: 18000, tag: "Bestseller", images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80"], desc: "Hand-stitched vintage granny square cardigan." },
-            { id: 2, name: "Nomad Fringe Crossbody Bag", category: "Accessories", priceNPR: 8500, tag: "Artisan", images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80"], desc: "Boho crossbody tote with tassel fringes." }
-        ];
+        let orders = [];
 
-        let cart = JSON.parse(localStorage.getItem('sd_cart')) || [];
+        function updateKPIMetrics() {
+            const totalRev = orders.reduce((sum, o) => sum + (o.totalAmount || 0), 0);
+            document.getElementById('stat-revenue').innerText = `Rs. ${totalRev.toLocaleString()}`;
+            document.getElementById('stat-orders').innerText = orders.length;
+            document.getElementById('stat-pending').innerText = orders.filter(o => o.status === 'Pending').length;
+            document.getElementById('stat-aov').innerText = orders.length ? `Rs. ${Math.round(totalRev / orders.length).toLocaleString()}` : 'Rs. 0';
+        }
 
-        function renderProducts() {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = products.map(p => `
-                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between p-4">
-                    <img src="${p.images[0]}" class="w-full aspect-square object-cover rounded-xl mb-3">
-                    <h3 class="text-xs font-bold mb-1">${p.name}</h3>
-                    <div class="flex items-center justify-between mt-2">
-                        <span class="text-xs font-extrabold text-rose-600">Rs. ${p.priceNPR.toLocaleString()}</span>
-                        <button onclick="addToCart(${p.id})" class="px-3 py-1.5 bg-rose-600 text-white rounded-xl text-xs font-bold">+ Add</button>
-                    </div>
-                </div>
+        function renderOrdersTable() {
+            const tbody = document.getElementById('orders-table-body');
+            if (orders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-zinc-400">No orders placed yet. Try placing an order from your main shop page!</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = orders.map(o => `
+                <tr class="hover:bg-white/40 dark:hover:bg-zinc-800/40">
+                    <td class="p-3.5 font-mono font-bold text-rose-600">${o.id}</td>
+                    <td class="p-3.5 font-bold">${o.customerName}<br><span class="text-[10px] text-zinc-500 font-normal">${o.phone}</span></td>
+                    <td class="p-3.5">${(o.items || []).map(i => `${i.name} (x${i.qty})`).join(', ')}</td>
+                    <td class="p-3.5 font-bold">Rs. ${(o.totalAmount || 0).toLocaleString()}</td>
+                    <td class="p-3.5">
+                        <select onchange="updateStatus('${o.id}', this.value)" class="text-xs font-bold px-2.5 py-1 rounded-full border bg-transparent cursor-pointer">
+                            <option value="Pending" ${o.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>
+                            <option value="Shipped" ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                            <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                            <option value="Cancelled" ${o.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </td>
+                </tr>
             `).join('');
         }
-
-        function addToCart(id) {
-            const p = products.find(i => i.id === id);
-            const item = cart.find(i => i.id === id);
-            if (item) item.qty += 1; else cart.push({ ...p, qty: 1, size: 'Standard' });
-            localStorage.setItem('sd_cart', JSON.stringify(cart));
-            renderCart();
-            showToast(`Added ${p.name} to bag!`);
-        }
-
-        function renderCart() {
-            document.getElementById('cart-badge-desktop').innerText = cart.reduce((s, i) => s + i.qty, 0);
-            const container = document.getElementById('cart-items-container');
-            if (cart.length === 0) { container.innerHTML = `<p class="text-xs text-center text-zinc-400 py-8">Bag is empty</p>`; document.getElementById('cart-subtotal').innerText = 'Rs. 0'; return; }
-            let total = 0;
-            container.innerHTML = cart.map(i => {
-                total += i.priceNPR * i.qty;
-                return `<div class="flex items-center justify-between glass-card p-2 rounded-xl text-xs"><span>${i.name} (x${i.qty})</span><span class="font-bold">Rs. ${(i.priceNPR * i.qty).toLocaleString()}</span></div>`;
-            }).join('');
-            document.getElementById('cart-subtotal').innerText = `Rs. ${total.toLocaleString()}`;
-        }
-
-        function toggleCartDrawer() {
-            const drawer = document.getElementById('cart-drawer');
-            drawer.classList.toggle('hidden');
-        }
-
-        async function completeWebCheckout() {
-            if (cart.length === 0) { showToast("Your bag is empty!"); return; }
-            const name = document.getElementById('co-name').value.trim();
-            const phone = document.getElementById('co-phone').value.trim();
-            const address = document.getElementById('co-address').value.trim();
-            if (!name || !phone || !address) { showToast("Please fill in all details."); return; }
-
-            const id = 'SD-' + Date.now().toString(36).slice(-4).toUpperCase();
-            const total = cart.reduce((s, i) => s + (i.priceNPR * i.qty), 0);
-
-            try {
-                showToast("Submitting order...");
-                if (window.sdSaveOrder) {
-                    await window.sdSaveOrder({ id, customerName: name, phone, address, items: cart, totalAmount: total, paymentMethod: 'Cash on Delivery' });
-                    cart = [];
-                    localStorage.setItem('sd_cart', JSON.stringify(cart));
-                    renderCart();
-                    toggleCartDrawer();
-                    showToast(`Order ${id} placed successfully!`);
-                } else {
-                    showToast("Database still connecting, try again in a second.");
-                }
-            } catch (err) {
-                showToast("Error: " + err.message);
-            }
-        }
-
-        function showToast(msg) {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = "glass-pill px-4 py-3 rounded-2xl shadow-2xl text-xs font-semibold border border-rose-500/30";
-            toast.innerHTML = `<i class="fa-solid fa-sparkles text-rose-500 mr-2"></i><span>${msg}</span>`;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        window.onload = () => { renderProducts(); renderCart(); };
     </script>
     <script type="module">
         import { firebaseConfig } from "./firebase-config.js";
-        let db = null, fs = null, p = null;
-        const init = () => p || (p = (async () => {
-            const [A, F] = await Promise.all([import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"), import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")]);
-            fs = F; db = F.getFirestore(A.initializeApp(firebaseConfig));
-        })());
-        window.addEventListener("load", () => setTimeout(init, 500));
-        window.sdSaveOrder = async o => {
-            await init();
-            if (!db) throw new Error("Firebase not initialized");
-            await fs.setDoc(fs.doc(db, "orders", o.id), {
-                customerName: o.customerName,
-                phone: o.phone,
-                address: o.address,
-                notes: o.notes || "Web Order",
-                items: o.items,
-                totalAmount: o.totalAmount,
-                paymentMethod: o.paymentMethod || "COD",
-                status: "Pending",
-                timestamp: Date.now()
-            });
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.updateStatus = async (id, status) => {
+            await updateDoc(doc(db, "orders", id), { status });
         };
+
+        onSnapshot(query(collection(db, "orders"), orderBy("timestamp", "desc")), snap => {
+            orders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+            updateKPIMetrics();
+            renderOrdersTable();
+        });
     </script>
 </body>
 </html>
