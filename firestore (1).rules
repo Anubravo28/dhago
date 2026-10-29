@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // >>> Put YOUR admin Google email here <<<
+    function isAdmin() {
+      return request.auth != null
+          && request.auth.token.email == "YOUR_ADMIN_EMAIL@gmail.com"
+          && request.auth.token.email_verified == true;
+    }
+
+    // Guests may submit with uid == null; signed-in users must use their own uid.
+    function validOwner() {
+      return request.resource.data.uid == null
+          || (request.auth != null && request.resource.data.uid == request.auth.uid);
+    }
+
+    // Customer profile, saved cart and wishlist: only the owner
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Orders: anyone can place one, only the owner (or admin) can read it
+    match /orders/{id} {
+      allow create: if validOwner() && request.resource.data.status == "new";
+      allow read:   if isAdmin() || (request.auth != null && resource.data.uid == request.auth.uid);
+      allow update, delete: if isAdmin();
+    }
+
+    match /customOrders/{id} {
+      allow create: if validOwner() && request.resource.data.status == "new";
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /subscribers/{id} {
+      allow create: if request.resource.data.email is string
+                    && request.resource.data.email.size() < 200;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // For later, if you move products into Firestore
+    match /products/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}
