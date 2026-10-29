@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Sio Dhago | Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: { fontFamily: { sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'sans-serif'] } }
-            }
-        }
-    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -22,30 +14,25 @@
         .dark .glass-card { background: rgba(24, 24, 32, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); }
         .glass-pill { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.6); }
         .dark .glass-pill { background: rgba(30, 30, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .glass-modal { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(35px); border: 1px solid rgba(255, 255, 255, 0.6); }
-        .dark .glass-modal { background: rgba(18, 18, 26, 0.88); border: 1px solid rgba(255, 255, 255, 0.12); }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans min-h-screen flex flex-col pb-20">
 
     <header class="fixed top-0 inset-x-0 z-40 glass-hdr h-20 flex items-center justify-between px-6 sm:px-8">
         <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-purple-600 flex items-center justify-center text-white shadow-lg">
-                <i class="fa-solid fa-gauge-high text-lg"></i>
-            </div>
+            <img src="logo.jpeg" alt="Logo" class="w-10 h-10 rounded-2xl object-cover shadow-lg">
             <div>
-                <span class="text-lg font-extrabold bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">Sio Dhago Admin</span>
-                <p class="text-[10px] text-zinc-500">Live Orders Dashboard</p>
+                <span class="text-lg font-extrabold bg-gradient-to-r from-amber-600 to-rose-600 bg-clip-text text-transparent">Sio Dhago Admin</span>
+                <p class="text-[10px] text-zinc-500">Live Products & Orders Control Center</p>
             </div>
         </div>
-        <div class="glass-pill px-3 py-1.5 rounded-full text-xs font-bold flex items-center space-x-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Live Sync Active</span>
-        </div>
+        <a href="index.html" class="px-4 py-2 rounded-xl glass-pill text-xs font-bold hover:bg-amber-600 hover:text-white transition-all">View Live Store</a>
     </header>
 
-    <main class="flex-grow pt-28 max-w-7xl mx-auto w-full px-4 sm:px-8">
-        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <main class="flex-grow pt-28 max-w-7xl mx-auto w-full px-4 sm:px-8 space-y-8">
+        
+        <!-- KPI METRICS -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="glass-card p-6 rounded-3xl">
                 <span class="text-xs font-bold text-zinc-500 uppercase">Total Revenue</span>
                 <div id="stat-revenue" class="text-2xl font-extrabold mt-1">Rs. 0</div>
@@ -55,25 +42,82 @@
                 <div id="stat-orders" class="text-2xl font-extrabold mt-1">0</div>
             </div>
             <div class="glass-card p-6 rounded-3xl">
-                <span class="text-xs font-bold text-zinc-500 uppercase">Pending</span>
+                <span class="text-xs font-bold text-zinc-500 uppercase">Pending Orders</span>
                 <div id="stat-pending" class="text-2xl font-extrabold mt-1 text-amber-600">0</div>
             </div>
             <div class="glass-card p-6 rounded-3xl">
-                <span class="text-xs font-bold text-zinc-500 uppercase">Avg Order Value</span>
-                <div id="stat-aov" class="text-2xl font-extrabold mt-1">Rs. 0</div>
+                <span class="text-xs font-bold text-zinc-500 uppercase">Catalog Items</span>
+                <div id="stat-products" class="text-2xl font-extrabold mt-1">0</div>
             </div>
         </section>
 
+        <!-- ADD PRODUCT FORM & MANAGEMENT -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <section class="glass-card rounded-3xl p-6 lg:col-span-1">
+                <h2 class="text-lg font-extrabold mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-plus-circle text-amber-600"></i> Add New Product
+                </h2>
+                <form id="add-product-form" class="space-y-3.5">
+                    <div>
+                        <label class="text-[11px] font-bold block mb-1">Product Title</label>
+                        <input type="text" id="p-name" required placeholder="e.g. Handmade Pashmina Shawl" class="w-full text-xs p-3 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold block mb-1">Category</label>
+                        <select id="p-cat" class="w-full text-xs p-3 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none">
+                            <option value="Crochet Apparel">Crochet Apparel</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Amigurumi Toys">Amigurumi Toys</option>
+                            <option value="Home & Living">Home & Living</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[11px] font-bold block mb-1">Price (NPR)</label>
+                            <input type="number" id="p-price" required placeholder="8500" class="w-full text-xs p-3 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[11px] font-bold block mb-1">Badge Tag</label>
+                            <select id="p-tag" class="w-full text-xs p-3 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none">
+                                <option value="Bestseller">Bestseller</option>
+                                <option value="New Arrival">New Arrival</option>
+                                <option value="Artisan Made">Artisan Made</option>
+                                <option value="Limited">Limited</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold block mb-1">Image URL</label>
+                        <input type="url" id="p-img" required placeholder="https://images.unsplash.com/..." class="w-full text-xs p-3 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold block mb-1">Description</label>
+                        <textarea id="p-desc" rows="2" required placeholder="Handcrafted with organic Himalayan wool..." class="w-full text-xs p-3 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-700 to-rose-700 text-white font-bold text-xs shadow-lg hover:opacity-90 transition-all">
+                        Publish to Store Catalog
+                    </button>
+                </form>
+            </section>
+
+            <!-- LIVE PRODUCTS LIST -->
+            <section class="glass-card rounded-3xl p-6 lg:col-span-2">
+                <h2 class="text-lg font-extrabold mb-4">Store Inventory Catalog</h2>
+                <div id="admin-product-list" class="space-y-2.5 max-h-[420px] overflow-y-auto pr-1"></div>
+            </section>
+        </div>
+
+        <!-- ORDERS MANAGEMENT -->
         <section class="glass-card rounded-3xl p-6">
-            <h2 class="text-xl font-extrabold mb-4">Orders Management</h2>
+            <h2 class="text-xl font-extrabold mb-4">Incoming Customer Orders</h2>
             <div class="overflow-x-auto rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50">
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="glass-hdr text-[10px] font-extrabold uppercase text-zinc-500">
                             <th class="p-3.5">Order ID</th>
                             <th class="p-3.5">Customer</th>
-                            <th class="p-3.5">Summary</th>
-                            <th class="p-3.5">Total</th>
+                            <th class="p-3.5">Items Summary</th>
+                            <th class="p-3.5">Total Amount</th>
                             <th class="p-3.5">Status</th>
                         </tr>
                     </thead>
@@ -83,26 +127,90 @@
         </section>
     </main>
 
-    <script>
-        let orders = [];
+    <script type="module">
+        import { firebaseConfig } from "./firebase-config.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        function updateKPIMetrics() {
-            const totalRev = orders.reduce((sum, o) => sum + (o.totalAmount || 0), 0);
-            document.getElementById('stat-revenue').innerText = `Rs. ${totalRev.toLocaleString()}`;
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Add Product Handler
+        document.getElementById('add-product-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = 'prod_' + Date.now();
+            const newProduct = {
+                name: document.getElementById('p-name').value,
+                category: document.getElementById('p-cat').value,
+                priceNPR: Number(document.getElementById('p-price').value),
+                tag: document.getElementById('p-tag').value,
+                images: [document.getElementById('p-img').value],
+                description: document.getElementById('p-desc').value,
+                sizes: ["Standard"],
+                colors: ["#C2410C", "#D97706"]
+            };
+            await setDoc(doc(db, "products", id), newProduct);
+            alert("Product published to store successfully!");
+            e.target.reset();
+        });
+
+        // Delete Product
+        window.deleteProduct = async (id) => {
+            if (confirm("Remove this product from the store?")) {
+                await deleteDoc(doc(db, "products", id));
+            }
+        };
+
+        // Update Order Status
+        window.updateStatus = async (id, status) => {
+            await updateDoc(doc(db, "orders", id), { status });
+        };
+
+        // Real-time Inventory & Orders Sync
+        onSnapshot(collection(db, "products"), snap => {
+            const list = document.getElementById('admin-product-list');
+            document.getElementById('stat-products').innerText = snap.size;
+            if(snap.empty) {
+                list.innerHTML = `<p class="text-xs text-zinc-400 py-6 text-center">No products in store yet.</p>`;
+                return;
+            }
+            list.innerHTML = '';
+            snap.forEach(d => {
+                const p = d.data();
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-3 rounded-2xl bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-800/50";
+                div.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <img src="${p.images[0]}" class="w-12 h-12 rounded-xl object-cover">
+                        <div>
+                            <div class="text-xs font-bold">${p.name}</div>
+                            <div class="text-[10px] text-amber-600 font-semibold">Rs. ${p.priceNPR.toLocaleString()} • ${p.category}</div>
+                        </div>
+                    </div>
+                    <button onclick="deleteProduct('${d.id}')" class="px-3 py-1.5 rounded-xl bg-rose-500/10 text-rose-600 text-xs font-bold hover:bg-rose-500 hover:text-white transition-all">Delete</button>
+                `;
+                list.appendChild(div);
+            });
+        });
+
+        onSnapshot(query(collection(db, "orders"), orderBy("timestamp", "desc")), snap => {
+            const tbody = document.getElementById('orders-table-body');
+            let orders = [];
+            let rev = 0;
+            snap.forEach(d => { orders.push({ id: d.id, ...d.data() }); });
+            
             document.getElementById('stat-orders').innerText = orders.length;
             document.getElementById('stat-pending').innerText = orders.filter(o => o.status === 'Pending').length;
-            document.getElementById('stat-aov').innerText = orders.length ? `Rs. ${Math.round(totalRev / orders.length).toLocaleString()}` : 'Rs. 0';
-        }
+            orders.forEach(o => rev += (o.totalAmount || 0));
+            document.getElementById('stat-revenue').innerText = `Rs. ${rev.toLocaleString()}`;
 
-        function renderOrdersTable() {
-            const tbody = document.getElementById('orders-table-body');
-            if (orders.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-zinc-400">No orders placed yet. Try placing an order from your main shop page!</td></tr>`;
+            if(orders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-zinc-400">No orders placed yet.</td></tr>`;
                 return;
             }
             tbody.innerHTML = orders.map(o => `
-                <tr class="hover:bg-white/40 dark:hover:bg-zinc-800/40">
-                    <td class="p-3.5 font-mono font-bold text-rose-600">${o.id}</td>
+                <tr class="hover:bg-white/30 dark:hover:bg-zinc-800/30">
+                    <td class="p-3.5 font-mono font-bold text-amber-600">${o.id}</td>
                     <td class="p-3.5 font-bold">${o.customerName}<br><span class="text-[10px] text-zinc-500 font-normal">${o.phone}</span></td>
                     <td class="p-3.5">${(o.items || []).map(i => `${i.name} (x${i.qty})`).join(', ')}</td>
                     <td class="p-3.5 font-bold">Rs. ${(o.totalAmount || 0).toLocaleString()}</td>
@@ -117,24 +225,6 @@
                     </td>
                 </tr>
             `).join('');
-        }
-    </script>
-    <script type="module">
-        import { firebaseConfig } from "./firebase-config.js";
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        window.updateStatus = async (id, status) => {
-            await updateDoc(doc(db, "orders", id), { status });
-        };
-
-        onSnapshot(query(collection(db, "orders"), orderBy("timestamp", "desc")), snap => {
-            orders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-            updateKPIMetrics();
-            renderOrdersTable();
         });
     </script>
 </body>
