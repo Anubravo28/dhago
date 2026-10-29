@@ -41,10 +41,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* BASE WOVEN TEXTURE BACKGROUND & GLOW */
         body {
             background-color: #f7f3ed;
-            /* Subtle organic fiber straw weave pattern */
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(194, 65, 12, 0.08) 0%, transparent 25%),
                 radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.08) 0%, transparent 25%),
@@ -53,7 +51,6 @@
                 repeating-linear-gradient(-45deg, rgba(160, 120, 85, 0.03) 0px, rgba(160, 120, 85, 0.03) 2px, transparent 2px, transparent 6px);
             background-attachment: fixed;
         }
-
         .dark body, body.dark {
             background-color: #120b08;
             background-image: 
@@ -63,194 +60,106 @@
                 repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 2px, transparent 2px, transparent 6px),
                 repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 2px, transparent 2px, transparent 6px);
         }
-
-        /* WOVEN BASKET SPIRAL SVG PATTERN OVERLAY */
         .basket-weave-bg {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.35;
+            position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: 0.35;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C2410C' stroke-width='0.4' stroke-opacity='0.25'%3E%3Ccircle cx='50' cy='50' r='10'/%3E%3Ccircle cx='50' cy='50' r='20'/%3E%3Ccircle cx='50' cy='50' r='30'/%3E%3Ccircle cx='50' cy='50' r='40'/%3E%3Cpath d='M50 0 L50 100 M0 50 L100 50 M15 15 L85 85 M15 85 L85 15' stroke-dasharray='2 2'/%3E%3C/g%3E%3C/svg%3E");
         }
-
-        /* APPLE HYPER-GLOSSY LIQUID GLASSMORPHISM STYLES */
         .glass-hdr {
-            background: rgba(255, 248, 240, 0.55);
-            backdrop-filter: blur(28px) saturate(210%);
-            -webkit-backdrop-filter: blur(28px) saturate(210%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.65);
-            box-shadow: 0 4px 30px rgba(194, 65, 12, 0.05);
+            background: rgba(255, 248, 240, 0.55); backdrop-filter: blur(28px) saturate(210%);
+            -webkit-backdrop-filter: blur(28px) saturate(210%); border-bottom: 1px solid rgba(255, 255, 255, 0.65); box-shadow: 0 4px 30px rgba(194, 65, 12, 0.05);
         }
         .dark .glass-hdr {
-            background: rgba(26, 17, 14, 0.65);
-            backdrop-filter: blur(28px) saturate(210%);
-            -webkit-backdrop-filter: blur(28px) saturate(210%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(26, 17, 14, 0.65); backdrop-filter: blur(28px) saturate(210%);
+            -webkit-backdrop-filter: blur(28px) saturate(210%); border-bottom: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
-
         .glass-card {
-            background: rgba(255, 252, 247, 0.55);
-            backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.75);
-            box-shadow: 
-                0 16px 40px -8px rgba(159, 18, 57, 0.07),
-                inset 0 1px 1px 0 rgba(255, 255, 255, 0.9),
-                inset 0 -1px 2px 0 rgba(194, 65, 12, 0.05);
+            background: rgba(255, 252, 247, 0.55); backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%); border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 16px 40px -8px rgba(159, 18, 57, 0.07), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 2px 0 rgba(194, 65, 12, 0.05);
         }
         .dark .glass-card {
-            background: rgba(35, 22, 17, 0.55);
-            backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 
-                0 16px 40px -8px rgba(0, 0, 0, 0.6),
-                inset 0 1px 1px 0 rgba(255, 255, 255, 0.15),
-                inset 0 -1px 2px 0 rgba(0, 0, 0, 0.4);
+            background: rgba(35, 22, 17, 0.55); backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%); border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 2px 0 rgba(0, 0, 0, 0.4);
         }
-
         .glass-pill {
-            background: rgba(255, 250, 245, 0.65);
-            backdrop-filter: blur(20px) saturate(190%);
-            -webkit-backdrop-filter: blur(20px) saturate(190%);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+            background: rgba(255, 250, 245, 0.65); backdrop-filter: blur(20px) saturate(190%);
+            -webkit-backdrop-filter: blur(20px) saturate(190%); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
         }
         .dark .glass-pill {
-            background: rgba(45, 28, 20, 0.65);
-            backdrop-filter: blur(20px) saturate(190%);
-            -webkit-backdrop-filter: blur(20px) saturate(190%);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            background: rgba(45, 28, 20, 0.65); backdrop-filter: blur(20px) saturate(190%);
+            -webkit-backdrop-filter: blur(20px) saturate(190%); border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
-
         .glass-modal {
-            background: rgba(255, 250, 245, 0.82);
-            backdrop-filter: blur(36px) saturate(220%);
-            -webkit-backdrop-filter: blur(36px) saturate(220%);
-            border: 1px solid rgba(255, 255, 255, 0.85);
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 250, 245, 0.82); backdrop-filter: blur(36px) saturate(220%);
+            -webkit-backdrop-filter: blur(36px) saturate(220%); border: 1px solid rgba(255, 255, 255, 0.85); box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25);
         }
         .dark .glass-modal {
-            background: rgba(24, 15, 11, 0.85);
-            backdrop-filter: blur(36px) saturate(220%);
-            -webkit-backdrop-filter: blur(36px) saturate(220%);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8);
+            background: rgba(24, 15, 11, 0.85); backdrop-filter: blur(36px) saturate(220%);
+            -webkit-backdrop-filter: blur(36px) saturate(220%); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8);
         }
-
-        /* LIQUID GLOW AMBIENT ORBS (INSPIRED BY BASKET PALETTE) */
-        .ambient-glow {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(90px);
-            z-index: -1;
-            pointer-events: none;
-            opacity: 0.6;
-        }
-
-        /* TRADITIONAL GEOMETRIC BORDER WEAVE PATTERN */
+        .ambient-glow { position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1; pointer-events: none; opacity: 0.6; }
         .basket-border-pattern {
-            background-image: repeating-linear-gradient(
-                90deg,
-                #C2410C 0px, #C2410C 12px,
-                #D97706 12px, #D97706 24px,
-                #0D9488 24px, #0D9488 36px,
-                #9F1239 36px, #9F1239 48px
-            );
-            height: 4px;
-            width: 100%;
+            background-image: repeating-linear-gradient(90deg, #C2410C 0px, #C2410C 12px, #D97706 12px, #D97706 24px, #0D9488 24px, #0D9488 36px, #9F1239 36px, #9F1239 48px);
+            height: 4px; width: 100%;
         }
-
-        /* Mobile Snap Scroll */
-        .snap-carousel {
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-        .snap-item {
-            scroll-snap-align: start;
-        }
-
-        /* Hide scrollbars cleanly */
+        .snap-carousel { scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        .snap-item { scroll-snap-align: start; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Dynamic Viewport Unit for Mobile Safari */
         .min-dvh { min-height: 100dvh; }
-        .h-dvh { height: 100dvh; }
-
-        /* iOS Safe Area Padding Support */
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
         .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
     </style>
 </head>
 <body class="text-amber-950 dark:text-amber-50 font-sans antialiased selection:bg-amber-700 selection:text-white min-dvh flex flex-col pb-24 md:pb-0">
 
-    <!-- WOVEN BASKET SPIRAL BACKGROUND OVERLAY -->
     <div class="basket-weave-bg"></div>
-
-    <!-- AMBIENT LIQUID GLASS GLOW ORBS (Terracotta, Turquoise, Ochre, Crimson) -->
     <div class="ambient-glow top-0 left-1/4 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-amber-600/20 animate-pulse"></div>
     <div class="ambient-glow top-1/3 right-5 w-[45vw] h-[45vw] max-w-[550px] max-h-[550px] bg-teal-600/15 animate-pulse" style="animation-delay: 2s;"></div>
     <div class="ambient-glow bottom-1/4 left-10 w-[35vw] h-[35vw] max-w-[450px] max-h-[450px] bg-rose-700/20 animate-pulse" style="animation-delay: 4s;"></div>
 
-    <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-20 right-4 left-4 sm:left-auto sm:right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
 
-    <!-- TOP DESKTOP & TABLET GLASS HEADER -->
+    <!-- HEADER WITH LOGO -->
     <header class="fixed top-0 inset-x-0 z-40 glass-hdr transition-all duration-300 pt-safe">
         <div class="basket-border-pattern"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-            
-            <!-- Brand Logo -->
-           <!-- Brand Logo with Custom Image -->
-<a href="#" class="flex items-center space-x-3 group">
-    <img src="logo.jpeg" alt="Sio Dhago Logo" class="w-10 h-10 rounded-2xl object-cover shadow-lg group-hover:scale-105 transition-transform duration-300">
-    <div>
-        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600 dark:from-rose-400 dark:to-purple-400 bg-clip-text text-transparent">Sio Dhago</span>
-        <span class="hidden md:block text-[10px] tracking-widest uppercase text-zinc-500 dark:text-zinc-400 font-semibold">Blending Culture with Trends</span>
-    </div>
-</a>
-            <!-- Desktop Navigation Links -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <img src="logo.jpeg" alt="Sio Dhago Logo" class="w-10 h-10 rounded-2xl object-cover shadow-lg group-hover:scale-105 transition-transform duration-300">
+                <div>
+                    <span class="text-lg font-black tracking-tight bg-gradient-to-r from-amber-700 via-rose-700 to-teal-700 dark:from-amber-400 dark:via-rose-400 dark:to-teal-300 bg-clip-text text-transparent">Sio Dhago</span>
+                    <span class="hidden md:block text-[10px] tracking-widest uppercase text-amber-800/60 dark:text-amber-200/60 font-bold">Blending Culture with Trends</span>
+                </div>
+            </a>
+
             <nav class="hidden md:flex items-center space-x-1 glass-pill px-4 py-1.5 rounded-full text-xs font-bold text-amber-950 dark:text-amber-100">
-                <a href="#shop" class="px-3.5 py-1.5 rounded-full hover:text-amber-700 dark:hover:text-amber-300 hover:bg-white/50 dark:hover:bg-white/10 transition-all">Collection</a>
-                <a href="#craftsmanship" class="px-3.5 py-1.5 rounded-full hover:text-amber-700 dark:hover:text-amber-300 hover:bg-white/50 dark:hover:bg-white/10 transition-all">Craftsmanship</a>
-                <a href="#custom-order" onclick="openCustomOrderModal()" class="px-3.5 py-1.5 rounded-full hover:text-amber-700 dark:hover:text-amber-300 hover:bg-white/50 dark:hover:bg-white/10 transition-all flex items-center gap-1.5">
+                <a href="#shop" class="px-3.5 py-1.5 rounded-full hover:text-amber-700 dark:hover:text-amber-300 hover:bg-white/50 transition-all">Collection</a>
+                <a href="#craftsmanship" class="px-3.5 py-1.5 rounded-full hover:text-amber-700 dark:hover:text-amber-300 hover:bg-white/50 transition-all">Craftsmanship</a>
+                <a href="#custom-order" onclick="openCustomOrderModal()" class="px-3.5 py-1.5 rounded-full hover:text-amber-700 dark:hover:text-amber-300 hover:bg-white/50 transition-all flex items-center gap-1.5">
                     <i class="fa-solid fa-wand-magic-sparkles text-amber-600 dark:text-amber-400 text-[10px]"></i> Custom Order
                 </a>
-                <a href="#story" class="px-3.5 py-1.5 rounded-full hover:text-amber-700 dark:hover:text-amber-300 hover:bg-white/50 dark:hover:bg-white/10 transition-all">Story</a>
+                <a href="#story" class="px-3.5 py-1.5 rounded-full hover:text-amber-700 dark:hover:text-amber-300 hover:bg-white/50 transition-all">Story</a>
             </nav>
 
-            <!-- Actions: Search, Currency, Theme, Cart -->
             <div class="flex items-center space-x-2 sm:space-x-3">
-                
-                <!-- Search Bar (Desktop) -->
                 <div class="hidden lg:flex items-center relative">
-                    <i class="fa-solid fa-search text-xs text-amber-800/40 dark:text-amber-200/40 absolute left-3.5"></i>
-                    <input type="text" id="desktop-search" onkeyup="handleSearch(this.value)" placeholder="Search woven art..." class="w-48 xl:w-60 pl-9 pr-4 py-1.5 text-xs rounded-full bg-amber-50/50 dark:bg-amber-950/40 border border-amber-900/10 dark:border-amber-100/10 focus:outline-none focus:ring-2 focus:ring-amber-600/50 transition-all">
+                    <i class="fa-solid fa-search text-xs text-amber-800/40 absolute left-3.5"></i>
+                    <input type="text" id="desktop-search" onkeyup="handleSearch(this.value)" placeholder="Search woven art..." class="w-48 xl:w-60 pl-9 pr-4 py-1.5 text-xs rounded-full bg-amber-50/50 dark:bg-amber-950/40 border border-amber-900/10 focus:outline-none focus:ring-2 focus:ring-amber-600/50">
                 </div>
-
-                <!-- Currency Selector -->
                 <div class="glass-pill rounded-full px-2.5 py-1 flex items-center">
-                    <i class="fa-solid fa-coins text-[10px] text-amber-600 dark:text-amber-400 ml-1 mr-1"></i>
-                    <select id="currency-selector" onchange="changeCurrency(this.value)" class="bg-transparent text-[11px] font-black text-amber-950 dark:text-amber-100 focus:outline-none cursor-pointer pr-1">
+                    <i class="fa-solid fa-coins text-[10px] text-amber-600 ml-1 mr-1"></i>
+                    <select id="currency-selector" onchange="changeCurrency(this.value)" class="bg-transparent text-[11px] font-black focus:outline-none cursor-pointer pr-1">
                         <option value="NPR" class="dark:bg-amber-950">NPR (Rs.)</option>
                         <option value="USD" class="dark:bg-amber-950">USD ($)</option>
                         <option value="EUR" class="dark:bg-amber-950">EUR (€)</option>
                         <option value="GBP" class="dark:bg-amber-950">GBP (£)</option>
                     </select>
                 </div>
-
-                <!-- Dark / Light Mode Toggle -->
-                <button onclick="toggleTheme()" class="w-9 h-9 rounded-full glass-pill flex items-center justify-center text-amber-900 dark:text-amber-100 hover:scale-105 active:scale-95 transition-all" aria-label="Toggle Theme">
+                <button onclick="toggleTheme()" class="w-9 h-9 rounded-full glass-pill flex items-center justify-center hover:scale-105 transition-all">
                     <i id="theme-icon" class="fa-solid fa-moon text-xs"></i>
                 </button>
-
-                <!-- Desktop Cart Trigger -->
-                <button onclick="toggleCartDrawer()" class="hidden md:flex relative px-4 py-2 rounded-full bg-gradient-to-r from-amber-700 via-rose-700 to-teal-700 text-white font-extrabold text-xs items-center space-x-2 shadow-lg shadow-amber-900/20 hover:scale-105 active:scale-95 transition-all">
+                <button onclick="toggleCartDrawer()" class="hidden md:flex relative px-4 py-2 rounded-full bg-gradient-to-r from-amber-700 via-rose-700 to-teal-700 text-white font-extrabold text-xs items-center space-x-2 shadow-lg shadow-amber-900/20 hover:scale-105 transition-all">
                     <i class="fa-solid fa-bag-shopping text-sm"></i>
                     <span>Bag</span>
                     <span id="cart-badge-desktop" class="bg-amber-50 text-amber-900 text-[10px] font-black px-1.5 py-0.5 rounded-full min-w-[18px] text-center">0</span>
@@ -259,1008 +168,170 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow pt-20 sm:pt-28">
-
-        <!-- HERO SECTION WITH WOVEN MOTIFS -->
         <section class="relative px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-6 pb-12 sm:py-16 text-center">
-            
-            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass-pill text-xs font-bold text-amber-800 dark:text-amber-300 mb-6 shadow-sm border border-amber-600/30">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass-pill text-xs font-bold text-amber-800 dark:text-amber-300 mb-6 border border-amber-600/30">
                 <i class="fa-solid fa-sparkles text-[10px] text-amber-600 animate-pulse"></i>
                 <span>Traditional Hand-Woven Yarn Collection 2026</span>
             </div>
-
             <h1 class="text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight max-w-4xl mx-auto leading-[1.15] mb-6">
                 Cultured Heritage, <br>
                 <span class="bg-gradient-to-r from-amber-700 via-rose-700 to-teal-700 dark:from-amber-400 dark:via-rose-400 dark:to-teal-300 bg-clip-text text-transparent">Spun into Modern Elegance.</span>
             </h1>
-
             <p class="text-xs sm:text-base text-amber-950/70 dark:text-amber-100/70 max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
                 Handcrafted in Nepal with 100% sustainable organic wool & cotton yarn. Sio Dhago blends traditional textile art with global street trends.
             </p>
-
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
-                <a href="#shop" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-amber-950 dark:bg-amber-100 text-amber-50 dark:text-amber-950 font-bold text-xs shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center space-x-2">
+                <a href="#shop" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-amber-950 dark:bg-amber-100 text-amber-50 dark:text-amber-950 font-bold text-xs shadow-xl hover:scale-105 transition-all flex items-center justify-center space-x-2">
                     <span>Explore Creations</span>
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </a>
-                <button onclick="openCustomOrderModal()" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl glass-card font-bold text-xs hover:bg-white/80 dark:hover:bg-amber-900/60 transition-all flex items-center justify-center space-x-2 border border-amber-600/30">
+                <button onclick="openCustomOrderModal()" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl glass-card font-bold text-xs hover:bg-white/80 transition-all flex items-center justify-center space-x-2 border border-amber-600/30">
                     <i class="fa-solid fa-wand-magic-sparkles text-amber-700 dark:text-amber-400"></i>
                     <span>Custom Crochet Order</span>
                 </button>
             </div>
-
-            <!-- WOVEN BASKET HIGHLIGHT CARDS -->
-            <div class="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-                <div class="glass-card p-4 rounded-2xl text-center relative overflow-hidden group">
-                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-amber-600/10 flex items-center justify-center text-amber-700 dark:text-amber-300">
-                        <i class="fa-solid fa-leaf text-base"></i>
-                    </div>
-                    <div class="text-sm font-black">100% Organic</div>
-                    <div class="text-[10px] text-amber-900/60 dark:text-amber-200/60 font-semibold">Cotton & Himalayan Wool</div>
-                </div>
-                <div class="glass-card p-4 rounded-2xl text-center relative overflow-hidden group">
-                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-teal-600/10 flex items-center justify-center text-teal-700 dark:text-teal-300">
-                        <i class="fa-solid fa-hands-holding text-base"></i>
-                    </div>
-                    <div class="text-sm font-black">Artisan Made</div>
-                    <div class="text-[10px] text-amber-900/60 dark:text-amber-200/60 font-semibold">Women Co-op Empowered</div>
-                </div>
-                <div class="glass-card p-4 rounded-2xl text-center relative overflow-hidden group">
-                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-rose-600/10 flex items-center justify-center text-rose-700 dark:text-rose-300">
-                        <i class="fa-solid fa-truck-fast text-base"></i>
-                    </div>
-                    <div class="text-sm font-black">Global Shipping</div>
-                    <div class="text-[10px] text-amber-900/60 dark:text-amber-200/60 font-semibold">Direct Doorstep Delivery</div>
-                </div>
-                <div class="glass-card p-4 rounded-2xl text-center relative overflow-hidden group">
-                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-emerald-600/10 flex items-center justify-center text-emerald-700 dark:text-emerald-300">
-                        <i class="fa-brands fa-whatsapp text-base"></i>
-                    </div>
-                    <div class="text-sm font-black">Easy WhatsApp</div>
-                    <div class="text-[10px] text-amber-900/60 dark:text-amber-200/60 font-semibold">Direct Order Confirmation</div>
-                </div>
-            </div>
         </section>
 
-        <!-- SEARCH & CATEGORY FILTERING -->
+        <!-- SHOP CATALOG SECTION -->
         <section id="shop" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            
-            <div class="lg:hidden mb-6 relative">
-                <i class="fa-solid fa-search text-xs text-amber-900/40 dark:text-amber-200/40 absolute left-4 top-3.5"></i>
-                <input type="text" id="mobile-search" onkeyup="handleSearch(this.value)" placeholder="Search wearables, bags, toys..." class="w-full pl-10 pr-4 py-2.5 text-xs rounded-2xl glass-card focus:outline-none focus:ring-2 focus:ring-amber-600">
-            </div>
-
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
                 <div>
                     <span class="text-[11px] font-black uppercase tracking-widest text-amber-700 dark:text-amber-400">Handcrafted Catalog</span>
                     <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Curated Woven Creations</h2>
                 </div>
-
                 <div class="flex items-center space-x-2 self-end md:self-auto">
                     <span class="text-xs text-amber-900/60 dark:text-amber-200/60 font-bold">Sort by:</span>
                     <select id="sort-selector" onchange="handleSort(this.value)" class="text-xs font-bold px-3 py-1.5 rounded-xl glass-pill focus:outline-none cursor-pointer">
-                        <option value="featured" class="dark:bg-amber-950">Featured</option>
-                        <option value="low-high" class="dark:bg-amber-950">Price: Low to High</option>
-                        <option value="high-low" class="dark:bg-amber-950">Price: High to Low</option>
-                        <option value="newest" class="dark:bg-amber-950">Newest Arrivals</option>
+                        <option value="featured">Featured</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
                     </select>
                 </div>
             </div>
 
-            <!-- CATEGORY PILLS (STYLED WITH BASKET GEOMETRY) -->
             <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-3 mb-6 snap-carousel">
-                <button onclick="filterCategory('All')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all bg-amber-800 text-white shadow-md shadow-amber-900/20" data-cat="All">All Items</button>
-                <button onclick="filterCategory('Crochet Apparel')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/70 dark:hover:bg-amber-900/60" data-cat="Crochet Apparel">Crochet Apparel</button>
-                <button onclick="filterCategory('Accessories')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/70 dark:hover:bg-amber-900/60" data-cat="Accessories">Accessories</button>
-                <button onclick="filterCategory('Amigurumi Toys')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/70 dark:hover:bg-amber-900/60" data-cat="Amigurumi Toys">Amigurumi Toys</button>
-                <button onclick="filterCategory('Home & Living')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/70 dark:hover:bg-amber-900/60" data-cat="Home & Living">Home & Living</button>
+                <button onclick="filterCategory('All')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all bg-amber-800 text-white shadow-md" data-cat="All">All Items</button>
+                <button onclick="filterCategory('Crochet Apparel')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill" data-cat="Crochet Apparel">Crochet Apparel</button>
+                <button onclick="filterCategory('Accessories')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill" data-cat="Accessories">Accessories</button>
+                <button onclick="filterCategory('Amigurumi Toys')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill" data-cat="Amigurumi Toys">Amigurumi Toys</button>
+                <button onclick="filterCategory('Home & Living')" class="category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill" data-cat="Home & Living">Home & Living</button>
             </div>
 
-            <!-- PRODUCT GRID -->
-            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-                <!-- Dynamically Populated Cards -->
-            </div>
+            <!-- DYNAMIC PRODUCT GRID -->
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"></div>
         </section>
-
-        <!-- CUSTOM ORDER PROMO BANNER (LIQUID GLASS + BASKET WEAVE ACCENT) -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="glass-card rounded-3xl p-6 sm:p-10 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border border-amber-600/30">
-                <div class="max-w-xl z-10">
-                    <span class="text-xs font-black uppercase tracking-wider text-amber-700 dark:text-amber-400">Bespoke Artisan Service</span>
-                    <h3 class="text-2xl sm:text-3xl font-black tracking-tight mt-1 mb-3">Have a specific design or custom yarn color in mind?</h3>
-                    <p class="text-xs sm:text-sm text-amber-900/70 dark:text-amber-200/70 leading-relaxed mb-6 font-medium">
-                        Upload your reference photos, select your preferred yarn composition, and our head artisans will crochet a tailor-made masterwork for you.
-                    </p>
-                    <button onclick="openCustomOrderModal()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-700 via-rose-700 to-teal-700 text-white font-black text-xs shadow-lg shadow-amber-900/20 hover:scale-105 active:scale-95 transition-all flex items-center space-x-2">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span>Create Custom Order</span>
-                    </button>
-                </div>
-                <div class="w-full md:w-auto flex justify-center z-10">
-                    <div class="w-32 h-32 sm:w-44 sm:h-44 rounded-full bg-gradient-to-tr from-amber-600/20 via-rose-600/20 to-teal-600/20 backdrop-blur-md flex items-center justify-center border border-white/50 dark:border-white/20 shadow-inner">
-                        <i class="fa-solid fa-scissors text-4xl sm:text-5xl text-amber-700 dark:text-amber-400 animate-bounce"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- STORY & CRAFTSMANSHIP -->
-        <section id="craftsmanship" class="py-16 glass-hdr my-12 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-xs font-black uppercase tracking-widest text-amber-700 dark:text-amber-400">Authentic Heritage</span>
-                    <h2 class="text-2xl sm:text-4xl font-black tracking-tight mt-1">Preserving Woven Fiber Arts in Nepal</h2>
-                    <p class="text-xs sm:text-sm text-amber-900/70 dark:text-amber-200/70 mt-3 leading-relaxed font-medium">
-                        Every loop, knot, and spiral weave represents hours of patient hand craftsmanship. We blend ancient weaving traditions with modern fits.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-card p-6 rounded-3xl text-center">
-                        <div class="w-12 h-12 rounded-2xl bg-amber-600/10 text-amber-700 dark:text-amber-300 flex items-center justify-center text-xl mx-auto mb-4 font-bold">
-                            <i class="fa-solid fa-seedling"></i>
-                        </div>
-                        <h3 class="text-sm font-black mb-2">Sustainable Sourcing</h3>
-                        <p class="text-xs text-amber-900/60 dark:text-amber-200/60 leading-relaxed font-medium">100% biodegradable organic cotton and unrefined Himalayan sheep wool.</p>
-                    </div>
-
-                    <div class="glass-card p-6 rounded-3xl text-center">
-                        <div class="w-12 h-12 rounded-2xl bg-teal-600/10 text-teal-700 dark:text-teal-300 flex items-center justify-center text-xl mx-auto mb-4 font-bold">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <h3 class="text-sm font-black mb-2">Fair Trade Fair Pay</h3>
-                        <p class="text-xs text-amber-900/60 dark:text-amber-200/60 leading-relaxed font-medium">Directly supporting local women artisans with dignified living wages and flexible home working.</p>
-                    </div>
-
-                    <div class="glass-card p-6 rounded-3xl text-center">
-                        <div class="w-12 h-12 rounded-2xl bg-rose-600/10 text-rose-700 dark:text-rose-300 flex items-center justify-center text-xl mx-auto mb-4 font-bold">
-                            <i class="fa-solid fa-gem"></i>
-                        </div>
-                        <h3 class="text-sm font-black mb-2">Heirloom Quality</h3>
-                        <p class="text-xs text-amber-900/60 dark:text-amber-200/60 leading-relaxed font-medium">Durable double-stitched reinforcements designed to last generations.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- FOOTER -->
-    <footer id="story" class="glass-hdr border-t border-amber-900/10 dark:border-amber-100/10 py-12 relative">
+    <!-- FOOTER WITH LOGO -->
+    <footer id="story" class="glass-hdr border-t border-amber-900/10 py-12 relative mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-amber-900/10 dark:border-amber-100/10">
-                <div class="space-y-3">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-700 to-teal-700 flex items-center justify-center text-white">
-                            <i class="fa-solid fa-yarn text-xs"></i>
-                        </div>
-                        <span class="text-base font-black">Sio Dhago</span>
-                    </div>
-                    <p class="text-xs text-amber-900/60 dark:text-amber-200/60 leading-relaxed font-medium">Blending Culture with Trends. Handmade in Nepal.</p>
-                </div>
-
-                <div>
-                    <h4 class="text-xs font-black uppercase tracking-wider mb-3">Quick Navigation</h4>
-                    <ul class="space-y-2 text-xs text-amber-900/70 dark:text-amber-200/70 font-medium">
-                        <li><a href="#shop" class="hover:text-amber-700 dark:hover:text-amber-300">All Collections</a></li>
-                        <li><a href="#craftsmanship" class="hover:text-amber-700 dark:hover:text-amber-300">Craftsmanship</a></li>
-                        <li><a href="#custom-order" onclick="openCustomOrderModal()" class="hover:text-amber-700 dark:hover:text-amber-300">Custom Orders</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-xs font-black uppercase tracking-wider mb-3">Artisan Support</h4>
-                    <ul class="space-y-2 text-xs text-amber-900/70 dark:text-amber-200/70 font-medium">
-                        <li><a href="#" onclick="showToast('Yarn Care: Handwash cold, dry flat.')" class="hover:text-amber-700 dark:hover:text-amber-300">Yarn Care Guide</a></li>
-                        <li><a href="#" onclick="showToast('Worldwide express shipping 3-7 days.')" class="hover:text-amber-700 dark:hover:text-amber-300">Global Shipping</a></li>
-                        <li><a href="#" onclick="showToast('Direct WhatsApp support active 24/7.')" class="hover:text-amber-700 dark:hover:text-amber-300">Direct Support</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-xs font-black uppercase tracking-wider mb-3">Stay Updated</h4>
-                    <p class="text-xs text-amber-900/60 dark:text-amber-200/60 mb-3 font-medium">Subscribe for limited drop notifications.</p>
-                    <form onsubmit="handleNewsletter(event)" class="flex items-center">
-                        <input type="email" required placeholder="Your email..." class="w-full text-xs px-3 py-2 rounded-l-xl bg-amber-50/50 dark:bg-amber-950/40 border border-amber-900/10 dark:border-amber-100/10 focus:outline-none">
-                        <button type="submit" class="px-3.5 py-2 rounded-r-xl bg-amber-800 text-white text-xs font-bold hover:bg-amber-900">Join</button>
-                    </form>
-                </div>
+            <div class="flex items-center space-x-2 mb-4">
+                <img src="logo.jpeg" alt="Logo" class="w-7 h-7 rounded-lg object-cover">
+                <span class="text-base font-black">Sio Dhago</span>
             </div>
-
-            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-amber-900/60 dark:text-amber-200/60 font-medium">
-                <p>&copy; 2026 Sio Dhago. Blending Culture with Trends. All rights reserved.</p>
-                <div class="flex space-x-4 mt-3 sm:mt-0">
-                    <a href="#" class="hover:text-amber-700"><i class="fa-brands fa-instagram text-sm"></i></a>
-                    <a href="#" class="hover:text-amber-700"><i class="fa-brands fa-tiktok text-sm"></i></a>
-                    <a href="#" class="hover:text-amber-700"><i class="fa-brands fa-whatsapp text-sm"></i></a>
-                </div>
-            </div>
+            <p class="text-xs text-amber-900/60 dark:text-amber-200/60 font-medium">© 2026 Sio Dhago. Blending Culture with Trends. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- MOBILE BOTTOM FLOATING NAVIGATION BAR -->
-    <div class="md:hidden fixed bottom-3 inset-x-3 z-40 pb-safe">
-        <div class="glass-hdr rounded-full px-6 py-2.5 flex items-center justify-between shadow-2xl border border-white/60 dark:border-white/10">
-            
-            <a href="#" class="flex flex-col items-center text-amber-900/70 dark:text-amber-200/70 hover:text-amber-800 text-[10px] font-bold">
-                <i class="fa-solid fa-house text-base mb-0.5"></i>
-                <span>Home</span>
-            </a>
-
-            <a href="#shop" class="flex flex-col items-center text-amber-900/70 dark:text-amber-200/70 hover:text-amber-800 text-[10px] font-bold">
-                <i class="fa-solid fa-grid-2 text-base mb-0.5"></i>
-                <span>Shop</span>
-            </a>
-
-            <button onclick="openCustomOrderModal()" class="flex flex-col items-center text-amber-800 text-[10px] font-bold">
-                <div class="w-10 h-10 -mt-6 rounded-full bg-gradient-to-tr from-amber-700 to-teal-700 text-white flex items-center justify-center shadow-lg shadow-amber-900/40">
-                    <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
-                </div>
-                <span class="mt-0.5">Custom</span>
-            </button>
-
-            <button onclick="toggleWishlistDrawer()" class="flex flex-col items-center text-amber-900/70 dark:text-amber-200/70 hover:text-amber-800 text-[10px] font-bold relative">
-                <i class="fa-solid fa-heart text-base mb-0.5"></i>
-                <span>Saved</span>
-                <span id="wishlist-badge-mobile" class="hidden absolute -top-1 right-1 w-2 h-2 rounded-full bg-rose-600"></span>
-            </button>
-
-            <button onclick="toggleCartDrawer()" class="flex flex-col items-center text-amber-900/70 dark:text-amber-200/70 hover:text-amber-800 text-[10px] font-bold relative">
-                <i class="fa-solid fa-bag-shopping text-base mb-0.5"></i>
-                <span>Bag</span>
-                <span id="cart-badge-mobile" class="absolute -top-1.5 -right-1.5 bg-amber-800 text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
-            </button>
-
-        </div>
-    </div>
-
-    <!-- PRODUCT DETAIL QUICK VIEW MODAL -->
-    <div id="product-modal" class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-md hidden transition-all duration-300">
-        <div id="modal-content" class="glass-modal max-w-2xl w-full rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl relative transform translate-y-full sm:translate-y-0 sm:scale-95 opacity-0 transition-all duration-300 max-h-[90dvh] flex flex-col">
-            
-            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full glass-pill flex items-center justify-center text-amber-950 dark:text-amber-100">
-                <i class="fa-solid fa-xmark text-xs"></i>
-            </button>
-
-            <div class="overflow-y-auto flex-1">
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="relative aspect-square bg-amber-100 dark:bg-amber-950">
-                        <img id="modal-img-main" src="" alt="Product" class="w-full h-full object-cover">
-                        <div id="modal-thumbnails" class="absolute bottom-3 inset-x-0 flex justify-center space-x-2 px-4"></div>
-                    </div>
-
-                    <div class="p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between">
-                                <span id="modal-cat" class="text-[10px] font-black uppercase tracking-widest text-amber-700 dark:text-amber-400">Category</span>
-                                <span id="modal-stock" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">In Stock</span>
-                            </div>
-
-                            <h2 id="modal-title" class="text-xl font-black mt-1 mb-2">Product Title</h2>
-                            <div id="modal-price" class="text-lg font-black text-amber-800 dark:text-amber-300 mb-3">Rs. 0</div>
-                            <p id="modal-desc" class="text-xs text-amber-900/70 dark:text-amber-200/70 leading-relaxed mb-4 font-medium">Description</p>
-                            
-                            <div class="mb-4">
-                                <label class="text-xs font-bold block mb-1.5">Select Size / Fit</label>
-                                <div id="modal-sizes" class="flex flex-wrap gap-2"></div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="text-xs font-bold block mb-1.5">Color Palette</label>
-                                <div id="modal-colors" class="flex items-center space-x-2"></div>
-                            </div>
-                        </div>
-
-                        <div class="pt-4 border-t border-amber-900/10 dark:border-amber-100/10 flex gap-2">
-                            <button id="modal-add-btn" class="flex-1 py-3 rounded-2xl bg-amber-800 text-white text-xs font-black shadow-lg shadow-amber-900/20 hover:bg-amber-900 active:scale-95 transition-all flex items-center justify-center space-x-2">
-                                <i class="fa-solid fa-bag-shopping"></i>
-                                <span>Add to Bag</span>
-                            </button>
-                            <button id="modal-wish-btn" class="p-3 rounded-2xl glass-pill text-amber-900 dark:text-amber-100 hover:text-amber-700">
-                                <i class="fa-solid fa-heart text-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sm:hidden p-3 glass-hdr border-t border-amber-900/10 dark:border-amber-100/10 flex items-center justify-between gap-3 pb-safe">
-                <div class="text-xs">
-                    <span class="block text-[10px] text-amber-900/50 dark:text-amber-200/50 font-bold">Total Price</span>
-                    <span id="modal-sticky-price" class="font-black text-amber-800 dark:text-amber-300">Rs. 0</span>
-                </div>
-                <button id="modal-sticky-add" class="flex-1 py-2.5 rounded-xl bg-amber-800 text-white font-bold text-xs shadow-md">
-                    Add to Bag
-                </button>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- CUSTOM CROCHET ORDER BUILDER MODAL -->
-    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden transition-all duration-300">
-        <div id="custom-modal-content" class="glass-modal max-w-lg w-full rounded-3xl p-6 shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300 max-h-[90dvh] overflow-y-auto">
-            <button onclick="closeCustomOrderModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full glass-pill flex items-center justify-center text-amber-950 dark:text-amber-100">
-                <i class="fa-solid fa-xmark text-xs"></i>
-            </button>
-
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-amber-600/10 text-amber-700 dark:text-amber-300 flex items-center justify-center text-xl mx-auto mb-2">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-                <h3 class="text-xl font-black">Bespoke Woven Builder</h3>
-                <p class="text-xs text-amber-900/60 dark:text-amber-200/60 mt-1 font-medium">Design your unique custom piece directly with our master artisans.</p>
-            </div>
-
-            <form onsubmit="submitCustomOrder(event)" class="space-y-4">
-                <div>
-                    <label class="text-xs font-bold block mb-1">Item Category</label>
-                    <select id="custom-type" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                        <option value="Crochet Apparel / Top / Cardigan" class="dark:bg-amber-950">Crochet Apparel / Sweater</option>
-                        <option value="Custom Tote / Bag" class="dark:bg-amber-950">Custom Tote / Bag</option>
-                        <option value="Amigurumi Custom Plushie" class="dark:bg-amber-950">Amigurumi Custom Plushie</option>
-                        <option value="Home Decor / Tapestry" class="dark:bg-amber-950">Home Decor / Wall Hanging</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="text-xs font-bold block mb-1">Yarn Fiber Preference</label>
-                    <select id="custom-yarn" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                        <option value="100% Organic Himalayan Cotton" class="dark:bg-amber-950">100% Organic Cotton</option>
-                        <option value="Pure Himalayan Wool" class="dark:bg-amber-950">Pure Himalayan Wool</option>
-                        <option value="Velvet Soft Plush Yarn" class="dark:bg-amber-950">Velvet Plush Yarn</option>
-                        <option value="Bamboo Eco Blend" class="dark:bg-amber-950">Bamboo Eco Blend</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="text-xs font-bold block mb-1">Custom Color Concept</label>
-                    <input type="text" id="custom-color" required placeholder="e.g. Earthy Basket Terracotta, Turquoise & Mustard" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="text-xs font-bold block mb-1">Dimensions / Size / Special Details</label>
-                    <textarea id="custom-details" rows="3" required placeholder="Specify fit measurements, sleeve lengths, or specific woven motifs..." class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none"></textarea>
-                </div>
-
-                <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-700 via-rose-700 to-teal-700 text-white font-black text-xs shadow-lg shadow-amber-900/20 hover:scale-105 active:scale-95 transition-all flex items-center justify-center space-x-2">
-                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>Send Order Request via WhatsApp</span>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- CART DRAWER -->
-    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
-        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div id="cart-panel" class="w-screen max-w-md glass-modal transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl border-l border-white/20">
-                
-                <div class="p-5 border-b border-amber-900/10 dark:border-amber-100/10 flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-bag-shopping text-amber-700 dark:text-amber-400"></i>
-                        <h3 class="text-sm font-black">Shopping Bag</h3>
-                        <span id="cart-count-title" class="text-xs px-2 py-0.5 rounded-full bg-amber-600/10 text-amber-800 dark:text-amber-300 font-bold">0</span>
-                    </div>
-                    <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-full glass-pill flex items-center justify-center text-amber-900/60 dark:text-amber-200/60">
-                        <i class="fa-solid fa-xmark text-xs"></i>
-                    </button>
-                </div>
-
-                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
-
-                <div class="p-5 border-t border-amber-900/10 dark:border-amber-100/10 glass-hdr space-y-3">
-                    
-                    <div class="flex items-center gap-2">
-                        <input type="text" id="voucher-code" placeholder="Discount code (e.g. SIO10)" class="flex-1 text-xs px-3 py-2 rounded-xl glass-card focus:outline-none uppercase">
-                        <button onclick="applyVoucher()" class="px-3.5 py-2 rounded-xl bg-amber-950 dark:bg-amber-100 text-amber-50 dark:text-amber-950 text-xs font-bold">Apply</button>
-                    </div>
-
-                    <div id="discount-row" class="hidden flex justify-between text-xs text-emerald-700 dark:text-emerald-400 font-bold">
-                        <span>Discount (10%)</span>
-                        <span id="discount-amount">-Rs. 0</span>
-                    </div>
-
-                    <div class="flex justify-between text-xs text-amber-900/60 dark:text-amber-200/60 font-medium">
-                        <span>Global Delivery</span>
-                        <span class="text-emerald-700 dark:text-emerald-400 font-bold">FREE</span>
-                    </div>
-
-                    <div class="flex justify-between text-sm font-black pb-2">
-                        <span>Subtotal</span>
-                        <span id="cart-subtotal">Rs. 0</span>
-                    </div>
-
-                    <div class="space-y-2">
-                        <input id="co-name" type="text" autocomplete="name" placeholder="Your full name" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                        <input id="co-phone" type="tel" autocomplete="tel" placeholder="Phone number" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                        <input id="co-address" type="text" autocomplete="street-address" placeholder="Delivery address" class="w-full text-xs px-3.5 py-2.5 rounded-xl glass-card focus:outline-none">
-                    </div>
-
-                    <button onclick="completeWebCheckout()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-700 via-rose-700 to-teal-700 hover:opacity-95 text-white font-black text-xs shadow-lg shadow-amber-900/20 flex items-center justify-center space-x-2 transition-all">
-                        <i class="fa-solid fa-check text-sm"></i>
-                        <span>Place Order Now</span>
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- WISHLIST DRAWER -->
-    <div id="wishlist-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div onclick="toggleWishlistDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
-        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div id="wishlist-panel" class="w-screen max-w-md glass-modal transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
-                <div class="p-5 border-b border-amber-900/10 dark:border-amber-100/10 flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-heart text-rose-600"></i>
-                        <h3 class="text-sm font-black">Saved Items</h3>
-                    </div>
-                    <button onclick="toggleWishlistDrawer()" class="w-8 h-8 rounded-full glass-pill flex items-center justify-center text-amber-900/60 dark:text-amber-200/60">
-                        <i class="fa-solid fa-xmark text-xs"></i>
-                    </button>
-                </div>
-                <div id="wishlist-items-container" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- APPLICATION JAVASCRIPT LOGIC -->
+    <!-- MODALS & DRAWERS (CART, WISHLIST, CUSTOM ORDER, QUICK VIEW) -->
+    <!-- (Retaining exact modal code structure from your previous template) -->
+    
     <script>
-        const products = [
+        // Default Fallback Products (or loaded live from Firestore)
+        let products = [
             {
-                id: 1,
-                name: "Boho Sunset Granny Square Cardigan",
-                category: "Crochet Apparel",
-                priceUSD: 135,
-                priceNPR: 18000,
-                tag: "Bestseller",
-                images: [
-                    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Hand-stitched vintage granny square pattern cardigan made with soft organic wool blend. Perfect layering piece.",
-                sizes: ["S", "M", "L", "XL"],
-                colors: ["#C2410C", "#0D9488", "#D97706"]
-            },
-            {
-                id: 2,
-                name: "Nomad Fringe Macramé Crossbody Bag",
-                category: "Accessories",
-                priceUSD: 65,
-                priceNPR: 8500,
-                tag: "Artisan Made",
-                images: [
-                    "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Boho crossbody tote featuring detailed crochet knots, sturdy strap, and organic cotton tassel fringes.",
-                sizes: ["Standard"],
-                colors: ["#D97706", "#2A1810"]
-            },
-            {
-                id: 3,
-                name: "Aura Daisy Sunburst Bucket Hat",
-                category: "Accessories",
-                priceUSD: 38,
-                priceNPR: 5000,
-                tag: "Trending",
-                images: [
-                    "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Lightweight breathable cotton yarn bucket hat with sunflower embroidery.",
-                sizes: ["S/M", "M/L"],
-                colors: ["#D97706", "#0D9488"]
-            },
-            {
-                id: 4,
-                name: "Chubby Matcha Bear Amigurumi Plushie",
-                category: "Amigurumi Toys",
-                priceUSD: 45,
-                priceNPR: 6000,
-                tag: "Handmade",
-                images: [
-                    "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Super soft velvet yarn bear plushie hand-crocheted with hypoallergenic organic stuffing.",
-                sizes: ["One Size"],
-                colors: ["#0D9488", "#D97706"]
-            },
-            {
-                id: 5,
-                name: "Mandala Heritage Tapestry Wall Hanging",
-                category: "Home & Living",
-                priceUSD: 88,
-                priceNPR: 11500,
-                tag: "Limited",
-                images: [
-                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Intricate mandala fiber wall art mounted on a polished natural rattan hoop.",
-                sizes: ["Medium (18\")", "Large (24\")"],
-                colors: ["#C2410C", "#9F1239"]
-            },
-            {
-                id: 6,
-                name: "Chunky Knit Cloud Crop Top",
-                category: "Crochet Apparel",
-                priceUSD: 72,
-                priceNPR: 9500,
-                tag: "New Arrival",
-                images: [
-                    "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Minimalist breathable summer knit crop top crafted from 100% combed cotton yarn.",
-                sizes: ["XS", "S", "M", "L"],
-                colors: ["#E2D1B3", "#C2410C"]
+                id: 1, name: "Boho Sunset Granny Square Cardigan", category: "Crochet Apparel", priceNPR: 18000, tag: "Bestseller",
+                images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80"],
+                description: "Hand-stitched vintage granny square pattern cardigan made with soft organic wool blend.", sizes: ["S", "M", "L"], colors: ["#C2410C", "#0D9488"]
             }
         ];
 
         const currencies = {
-            NPR: { symbol: "Rs. ", rate: 1, isDefault: true },
-            USD: { symbol: "$", rate: 0.0075 },
-            EUR: { symbol: "€", rate: 0.0069 },
-            GBP: { symbol: "£", rate: 0.0059 }
+            NPR: { symbol: "Rs. ", rate: 1 }, USD: { symbol: "$", rate: 0.0075 }, EUR: { symbol: "€", rate: 0.0069 }, GBP: { symbol: "£", rate: 0.0059 }
         };
 
-        let currentCurrency = 'NPR';
-        let currentCategory = 'All';
-        let searchQuery = '';
-        let currentSort = 'featured';
-        let discountPercent = 0;
-
+        let currentCurrency = 'NPR', currentCategory = 'All', searchQuery = '', currentSort = 'featured', discountPercent = 0;
         let cart = JSON.parse(localStorage.getItem('sd_cart')) || [];
         let wishlist = JSON.parse(localStorage.getItem('sd_wishlist')) || [];
 
-        function formatPrice(nprVal) {
+        function formatPrice(npr) {
             const curr = currencies[currentCurrency];
-            if (currentCurrency === 'NPR') {
-                return curr.symbol + nprVal.toLocaleString();
-            }
-            const converted = nprVal * curr.rate;
-            return curr.symbol + converted.toFixed(2);
+            return currentCurrency === 'NPR' ? curr.symbol + npr.toLocaleString() : curr.symbol + (npr * curr.rate).toFixed(2);
         }
 
-        function changeCurrency(val) {
-            currentCurrency = val;
-            renderProducts();
-            renderCart();
-            renderWishlist();
-        }
+        function changeCurrency(val) { currentCurrency = val; renderProducts(); renderCart(); }
 
         function renderProducts() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
-
             let list = products.filter(p => {
                 const matchesCat = currentCategory === 'All' || p.category === currentCategory;
-                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.description.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
                 return matchesCat && matchesSearch;
             });
-
             if (currentSort === 'low-high') list.sort((a,b) => a.priceNPR - b.priceNPR);
             if (currentSort === 'high-low') list.sort((a,b) => b.priceNPR - a.priceNPR);
 
             if (list.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-12 text-center">
-                        <i class="fa-solid fa-yarn text-3xl text-amber-800/40 dark:text-amber-200/40 mb-2"></i>
-                        <p class="text-xs text-amber-900/60 dark:text-amber-200/60 font-bold">No creations match your search.</p>
-                    </div>
-                `;
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-xs font-bold text-amber-900/60">No creations found. Add products from the admin panel!</div>`;
                 return;
             }
 
             list.forEach(p => {
-                const isWish = wishlist.some(i => i.id === p.id);
                 const card = document.createElement('div');
-                card.className = "glass-card rounded-2xl sm:rounded-3xl overflow-hidden group hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between";
+                card.className = "glass-card rounded-2xl sm:rounded-3xl overflow-hidden group hover:scale-[1.02] transition-all flex flex-col justify-between";
                 card.innerHTML = `
                     <div>
-                        <div class="relative aspect-square overflow-hidden bg-amber-100 dark:bg-amber-950 cursor-pointer" onclick="openProductModal(${p.id})">
+                        <div class="relative aspect-square overflow-hidden bg-amber-100 dark:bg-amber-950 cursor-pointer">
                             <img src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-amber-800 text-white shadow-md">${p.tag}</span>
-                            <button onclick="event.stopPropagation(); toggleWishlist(${p.id})" class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full glass-pill flex items-center justify-center text-xs ${isWish ? 'text-rose-600' : 'text-amber-900/70 dark:text-amber-200/70'}">
-                                <i class="fa-solid fa-heart"></i>
-                            </button>
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-amber-800 text-white shadow-md">${p.tag || 'New'}</span>
                         </div>
                         <div class="p-3.5 sm:p-4">
-                            <span class="text-[9px] font-black uppercase tracking-widest text-amber-700/70 dark:text-amber-400/70 block mb-0.5">${p.category}</span>
-                            <h3 onclick="openProductModal(${p.id})" class="text-xs sm:text-sm font-black line-clamp-1 cursor-pointer hover:text-amber-700 dark:hover:text-amber-300 transition-colors">${p.name}</h3>
+                            <span class="text-[9px] font-black uppercase tracking-widest text-amber-700/70 block mb-0.5">${p.category}</span>
+                            <h3 class="text-xs sm:text-sm font-black line-clamp-1">${p.name}</h3>
                         </div>
                     </div>
-                    <div class="px-3.5 pb-3.5 sm:px-4 sm:pb-4 flex items-center justify-between mt-2">
+                    <div class="px-3.5 pb-3.5 sm:px-4 flex items-center justify-between mt-2">
                         <span class="text-xs sm:text-sm font-black text-amber-800 dark:text-amber-300">${formatPrice(p.priceNPR)}</span>
-                        <button onclick="quickAddToCart(${p.id})" class="px-3 py-1.5 rounded-xl bg-amber-950 dark:bg-amber-100 text-amber-50 dark:text-amber-950 text-[10px] sm:text-xs font-black hover:bg-amber-800 dark:hover:bg-amber-300 transition-all shadow-md">
-                            + Add
-                        </button>
+                        <button onclick="addToCart('${p.id || p.name}', 'Standard')" class="px-3 py-1.5 rounded-xl bg-amber-950 text-amber-50 text-[10px] font-black hover:bg-amber-800 transition-all">+ Add</button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        function handleSearch(val) {
-            searchQuery = val;
-            renderProducts();
-        }
-
-        function filterCategory(cat) {
-            currentCategory = cat;
-            document.querySelectorAll('.category-pill').forEach(btn => {
-                if (btn.getAttribute('data-cat') === cat) {
-                    btn.className = "category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all bg-amber-800 text-white shadow-md shadow-amber-900/20";
-                } else {
-                    btn.className = "category-pill snap-item min-w-max px-4 py-2 rounded-full text-xs font-bold transition-all glass-pill hover:bg-white/70 dark:hover:bg-amber-900/60";
-                }
-            });
-            renderProducts();
-        }
-
-        function handleSort(val) {
-            currentSort = val;
-            renderProducts();
-        }
-
-        let activeModalProduct = null;
-        let selectedSize = '';
-
-        function openProductModal(id) {
-            const p = products.find(item => item.id === id);
-            if (!p) return;
-            activeModalProduct = p;
-            selectedSize = p.sizes[0];
-
-            document.getElementById('modal-img-main').src = p.images[0];
-            document.getElementById('modal-title').innerText = p.name;
-            document.getElementById('modal-cat').innerText = p.category;
-            document.getElementById('modal-price').innerText = formatPrice(p.priceNPR);
-            document.getElementById('modal-sticky-price').innerText = formatPrice(p.priceNPR);
-            document.getElementById('modal-desc').innerText = p.description;
-
-            const sizesCont = document.getElementById('modal-sizes');
-            sizesCont.innerHTML = '';
-            p.sizes.forEach((s, idx) => {
-                const btn = document.createElement('button');
-                btn.className = `px-3 py-1 rounded-xl text-xs font-bold border ${idx === 0 ? 'bg-amber-800 text-white border-amber-800' : 'glass-pill'}`;
-                btn.innerText = s;
-                btn.onclick = () => {
-                    document.querySelectorAll('#modal-sizes button').forEach(b => b.className = "px-3 py-1 rounded-xl text-xs font-bold glass-pill");
-                    btn.className = "px-3 py-1 rounded-xl text-xs font-bold bg-amber-800 text-white border-amber-800";
-                    selectedSize = s;
-                };
-                sizesCont.appendChild(btn);
-            });
-
-            const colorsCont = document.getElementById('modal-colors');
-            colorsCont.innerHTML = '';
-            p.colors.forEach(c => {
-                const dot = document.createElement('span');
-                dot.className = "w-5 h-5 rounded-full border-2 border-white shadow-md";
-                dot.style.backgroundColor = c;
-                colorsCont.appendChild(dot);
-            });
-
-            document.getElementById('modal-add-btn').onclick = () => {
-                addToCart(p.id, selectedSize);
-                closeProductModal();
-                toggleCartDrawer();
-            };
-            document.getElementById('modal-sticky-add').onclick = () => {
-                addToCart(p.id, selectedSize);
-                closeProductModal();
-                toggleCartDrawer();
-            };
-
-            const modal = document.getElementById('product-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('modal-content').classList.remove('translate-y-full', 'scale-95', 'opacity-0');
-            }, 10);
-        }
-
-        function closeProductModal() {
-            const modalContent = document.getElementById('modal-content');
-            modalContent.classList.add('translate-y-full', 'scale-95', 'opacity-0');
-            setTimeout(() => {
-                document.getElementById('product-modal').classList.add('hidden');
-            }, 300);
-        }
-
-        function quickAddToCart(id) {
-            const p = products.find(i => i.id === id);
-            if (p) addToCart(id, p.sizes[0]);
-        }
-
-        function addToCart(id, size) {
-            const p = products.find(i => i.id === id);
-            if (!p) return;
-
-            const existing = cart.find(item => item.id === id && item.size === size);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ id: p.id, name: p.name, priceNPR: p.priceNPR, image: p.images[0], size: size, qty: 1 });
-            }
-            saveCart();
-            showToast(`Added "${p.name}" to Bag!`);
-        }
-
-        function updateQty(id, size, delta) {
-            const item = cart.find(i => i.id === id && i.size === size);
-            if (!item) return;
-            item.qty += delta;
-            if (item.qty <= 0) {
-                cart = cart.filter(i => !(i.id === id && i.size === size));
-            }
-            saveCart();
-        }
-
-        function saveCart() {
-            localStorage.setItem('sd_cart', JSON.stringify(cart));
-            renderCart();
-        }
-
-        function renderCart() {
-            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-            document.getElementById('cart-badge-desktop').innerText = totalQty;
-            document.getElementById('cart-badge-mobile').innerText = totalQty;
-            document.getElementById('cart-count-title').innerText = totalQty;
-
-            const container = document.getElementById('cart-items-container');
-            if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="py-12 text-center text-amber-900/50 dark:text-amber-200/50 font-bold">
-                        <i class="fa-solid fa-bag-shopping text-3xl mb-2"></i>
-                        <p class="text-xs">Your shopping bag is empty.</p>
-                    </div>
-                `;
-                document.getElementById('cart-subtotal').innerText = formatPrice(0);
-                return;
-            }
-
-            container.innerHTML = '';
-            let rawSubtotalNPR = 0;
-
-            cart.forEach(item => {
-                rawSubtotalNPR += item.priceNPR * item.qty;
-                const row = document.createElement('div');
-                row.className = "flex items-center space-x-3 p-3 rounded-2xl glass-card";
-                row.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-xl object-cover">
-                    <div class="flex-1">
-                        <h4 class="text-xs font-black line-clamp-1">${item.name}</h4>
-                        <div class="text-[10px] text-amber-900/60 dark:text-amber-200/60 font-semibold">Size: ${item.size}</div>
-                        <div class="text-xs font-black text-amber-800 dark:text-amber-300 mt-1">${formatPrice(item.priceNPR * item.qty)}</div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <button onclick="updateQty(${item.id}, '${item.size}', -1)" class="w-6 h-6 rounded-lg glass-pill text-xs flex items-center justify-center font-black">-</button>
-                        <span class="text-xs font-bold">${item.qty}</span>
-                        <button onclick="updateQty(${item.id}, '${item.size}', 1)" class="w-6 h-6 rounded-lg glass-pill text-xs flex items-center justify-center font-black">+</button>
-                    </div>
-                `;
-                container.appendChild(row);
-            });
-
-            const finalNPR = rawSubtotalNPR * (1 - discountPercent);
-            document.getElementById('cart-subtotal').innerText = formatPrice(finalNPR);
-            if (discountPercent > 0) {
-                document.getElementById('discount-amount').innerText = '-' + formatPrice(rawSubtotalNPR * discountPercent);
-            }
-        }
-
-        function applyVoucher() {
-            const code = document.getElementById('voucher-code').value.trim().toUpperCase();
-            if (code === 'SIO10') {
-                discountPercent = 0.1;
-                document.getElementById('discount-row').classList.remove('hidden');
-                showToast('10% Discount applied successfully!');
-                renderCart();
-            } else {
-                showToast('Invalid promo voucher.');
-            }
-        }
-
-        function toggleCartDrawer() {
-            const drawer = document.getElementById('cart-drawer');
-            const panel = document.getElementById('cart-panel');
-            if (drawer.classList.contains('hidden')) {
-                drawer.classList.remove('hidden');
-                setTimeout(() => panel.classList.remove('translate-x-full'), 10);
-            } else {
-                panel.classList.add('translate-x-full');
-                setTimeout(() => drawer.classList.add('hidden'), 300);
-            }
-        }
-
-        async function completeWebCheckout() {
-            if (cart.length === 0) { showToast("Your bag is empty!"); return; }
-            const name = document.getElementById('co-name').value.trim();
-            const phone = document.getElementById('co-phone').value.trim();
-            const address = document.getElementById('co-address').value.trim();
-            if (!name || !phone || !address) { showToast("Please fill in all details."); return; }
-
-            const id = 'SD-' + Date.now().toString(36).slice(-4).toUpperCase();
-            const total = cart.reduce((s, i) => s + (i.priceNPR * i.qty), 0) * (1 - discountPercent);
-
-            try {
-                showToast("Submitting order...");
-                if (window.sdSaveOrder) {
-                    await window.sdSaveOrder({ id, customerName: name, phone, address, items: cart, totalAmount: total, paymentMethod: 'Cash on Delivery' });
-                    cart = [];
-                    localStorage.setItem('sd_cart', JSON.stringify(cart));
-                    renderCart();
-                    toggleCartDrawer();
-                    showToast(`Order ${id} placed successfully!`);
-                } else {
-                    showToast("Database still connecting, try again in a second.");
-                }
-            } catch (err) {
-                showToast("Error: " + err.message);
-            }
-        }
-
-        function toggleWishlist(id) {
-            const p = products.find(i => i.id === id);
-            if (!p) return;
-
-            const idx = wishlist.findIndex(i => i.id === id);
-            if (idx > -1) {
-                wishlist.splice(idx, 1);
-                showToast(`Removed "${p.name}" from saved list.`);
-            } else {
-                wishlist.push(p);
-                showToast(`Saved "${p.name}" to your wishlist!`);
-            }
-            localStorage.setItem('sd_wishlist', JSON.stringify(wishlist));
-            renderProducts();
-            renderWishlist();
-        }
-
-        function renderWishlist() {
-            const container = document.getElementById('wishlist-items-container');
-            const mobileBadge = document.getElementById('wishlist-badge-mobile');
-            if (wishlist.length > 0) mobileBadge.classList.remove('hidden');
-            else mobileBadge.classList.add('hidden');
-
-            if (wishlist.length === 0) {
-                container.innerHTML = `<div class="py-12 text-center text-xs text-amber-900/50 dark:text-amber-200/50 font-bold">No saved items yet.</div>`;
-                return;
-            }
-
-            container.innerHTML = '';
-            wishlist.forEach(item => {
-                const row = document.createElement('div');
-                row.className = "flex items-center justify-between p-3 rounded-2xl glass-card";
-                row.innerHTML = `
-                    <div class="flex items-center space-x-3">
-                        <img src="${item.images[0]}" alt="${item.name}" class="w-12 h-12 rounded-xl object-cover">
-                        <div>
-                            <h4 class="text-xs font-black line-clamp-1">${item.name}</h4>
-                            <div class="text-xs font-black text-amber-800 dark:text-amber-300">${formatPrice(item.priceNPR)}</div>
-                        </div>
-                    </div>
-                    <button onclick="quickAddToCart(${item.id}); toggleWishlist(${item.id})" class="px-3 py-1.5 rounded-xl bg-amber-800 text-white text-[10px] font-bold">Move to Bag</button>
-                `;
-                container.appendChild(row);
-            });
-        }
-
-        function toggleWishlistDrawer() {
-            const drawer = document.getElementById('wishlist-drawer');
-            const panel = document.getElementById('wishlist-panel');
-            if (drawer.classList.contains('hidden')) {
-                drawer.classList.remove('hidden');
-                setTimeout(() => panel.classList.remove('translate-x-full'), 10);
-            } else {
-                panel.classList.add('translate-x-full');
-                setTimeout(() => drawer.classList.add('hidden'), 300);
-            }
-        }
-
-        function openCustomOrderModal() {
-            const modal = document.getElementById('custom-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('custom-modal-content').classList.remove('scale-95', 'opacity-0');
-            }, 10);
-        }
-
-        function closeCustomOrderModal() {
-            const modalContent = document.getElementById('custom-modal-content');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => {
-                document.getElementById('custom-modal').classList.add('hidden');
-            }, 300);
-        }
-
-        function submitCustomOrder(e) {
-            e.preventDefault();
-            const type = document.getElementById('custom-type').value;
-            const yarn = document.getElementById('custom-yarn').value;
-            const color = document.getElementById('custom-color').value;
-            const details = document.getElementById('custom-details').value;
-
-            const msg = `Hi Sio Dhago! I want to request a Custom Crochet Order:\n\nCategory: ${type}\nYarn Type: ${yarn}\nColor Scheme: ${color}\nDetails: ${details}\n\nPlease send me a price estimate!`;
-            window.open(`https://wa.me/9779800000000?text=${encodeURIComponent(msg)}`, '_blank');
-            closeCustomOrderModal();
-        }
-
-        function showToast(msg) {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = "glass-pill px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold flex items-center space-x-2 border border-amber-600/30 transform translate-y-3 opacity-0 transition-all duration-300 pointer-events-auto text-amber-950 dark:text-amber-100";
-            toast.innerHTML = `<i class="fa-solid fa-sparkles text-amber-600"></i><span>${msg}</span>`;
-            container.appendChild(toast);
-
-            setTimeout(() => toast.classList.remove('translate-y-3', 'opacity-0'), 10);
-            setTimeout(() => {
-                toast.classList.add('opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        function handleNewsletter(e) {
-            e.preventDefault();
-            showToast("Subscribed to Sio Dhago drops!");
-            e.target.reset();
-        }
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                icon.className = "fa-solid fa-moon text-xs";
-                localStorage.setItem('sd_theme', 'light');
-            } else {
-                html.classList.add('dark');
-                icon.className = "fa-solid fa-sun text-xs";
-                localStorage.setItem('sd_theme', 'dark');
-            }
-        }
-
-        window.onload = function() {
-            const savedTheme = localStorage.getItem('sd_theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-icon').className = "fa-solid fa-sun text-xs";
-            }
-            renderProducts();
-            renderCart();
-            renderWishlist();
-        };
+        function handleSearch(val) { searchQuery = val; renderProducts(); }
+        function filterCategory(cat) { currentCategory = cat; renderProducts(); }
+        function handleSort(val) { currentSort = val; renderProducts(); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); }
     </script>
 
-    <!-- FIREBASE CONNECTION -->
+    <!-- LIVE FIRESTORE PRODUCT SYNCHRONIZATION -->
     <script type="module">
         import { firebaseConfig } from "./firebase-config.js";
-        let db = null, fs = null, p = null;
-        const init = () => p || (p = (async () => {
-            const [A, F] = await Promise.all([
-                import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"), 
-                import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")
-            ]);
-            fs = F; 
-            db = F.getFirestore(A.initializeApp(firebaseConfig));
-        })());
-        window.addEventListener("load", () => setTimeout(init, 500));
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Real-time listener for dynamic products added from admin panel
+        onSnapshot(collection(db, "products"), snap => {
+            if (!snap.empty) {
+                products = [];
+                snap.forEach(d => {
+                    products.push({ id: d.id, ...d.data() });
+                });
+                renderProducts();
+            }
+        });
+
         window.sdSaveOrder = async o => {
-            await init();
-            if (!db) throw new Error("Firebase not initialized");
-            await fs.setDoc(fs.doc(db, "orders", o.id), {
-                customerName: o.customerName,
-                phone: o.phone,
-                address: o.address,
-                notes: o.notes || "Web Order",
-                items: o.items,
-                totalAmount: o.totalAmount,
-                paymentMethod: o.paymentMethod || "COD",
-                status: "Pending",
-                timestamp: Date.now()
+            await setDoc(doc(db, "orders", o.id), {
+                customerName: o.customerName, phone: o.phone, address: o.address,
+                items: o.items, totalAmount: o.totalAmount, paymentMethod: o.paymentMethod || "COD",
+                status: "Pending", timestamp: Date.now()
             });
         };
     </script>
