@@ -20,7 +20,7 @@
 
     <header class="fixed top-0 inset-x-0 z-40 glass-hdr h-20 flex items-center justify-between px-6 sm:px-8">
         <div class="flex items-center space-x-3">
-            <img src="logo.png" alt="Logo" class="w-10 h-10 rounded-2xl object-cover shadow-lg">
+            <img src="logo.png" alt="Logo" class="w-10 h-10 rounded-2xl object-cover shadow-lg" onerror="this.src='https://via.placeholder.com/40'">
             <div>
                 <span class="text-lg font-extrabold bg-gradient-to-r from-amber-600 to-rose-600 bg-clip-text text-transparent">Sio Dhago Admin</span>
                 <p class="text-[10px] text-zinc-500">Live Products & Orders Control Center</p>
@@ -51,13 +51,19 @@
             </div>
         </section>
 
-        <!-- ADD PRODUCT FORM & MANAGEMENT -->
+        <!-- ADD / EDIT PRODUCT FORM & MANAGEMENT -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <section class="glass-card rounded-3xl p-6 lg:col-span-1">
-                <h2 class="text-lg font-extrabold mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-plus-circle text-amber-600"></i> Add New Product
-                </h2>
+                <div class="flex items-center justify-between mb-4">
+                    <h2 id="form-heading" class="text-lg font-extrabold flex items-center gap-2">
+                        <i id="form-icon" class="fa-solid fa-plus-circle text-amber-600"></i> <span id="form-title-text">Add New Product</span>
+                    </h2>
+                    <button type="button" id="cancel-edit-btn" onclick="resetForm()" class="hidden text-xs text-rose-500 font-bold hover:underline">Cancel Edit</button>
+                </div>
+                
                 <form id="add-product-form" class="space-y-3.5">
+                    <input type="hidden" id="edit-doc-id" value="">
+
                     <div>
                         <label for="p-name" class="text-[11px] font-bold block mb-1">Product Title</label>
                         <input type="text" id="p-name" name="p-name" required placeholder="e.g. Handmade Pashmina Shawl" class="w-full text-xs p-3 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none">
@@ -134,17 +140,20 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        let productsCache = {};
 
-        // Add Product Handler via Image URL
+        // Add or Update Product Handler
         document.getElementById('add-product-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
-            btn.innerText = "Publishing...";
+            const editId = document.getElementById('edit-doc-id').value;
+            
+            btn.innerText = editId ? "Updating Product..." : "Publishing...";
             btn.disabled = true;
 
             try {
-                const id = 'prod_' + Date.now();
-                const newProduct = {
+                const id = editId || ('prod_' + Date.now());
+                const productData = {
                     name: document.getElementById('p-name').value,
                     category: document.getElementById('p-cat').value,
                     priceNPR: Number(document.getElementById('p-price').value),
@@ -155,17 +164,47 @@
                     colors: ["#C2410C", "#D97706"]
                 };
                 
-                await setDoc(doc(db, "products", id), newProduct);
-                alert("Product published to store successfully!");
-                e.target.reset();
+                await setDoc(doc(db, "products", id), productData, { merge: true });
+                alert(editId ? "Product updated successfully!" : "Product published to store successfully!");
+                resetForm();
             } catch (error) {
                 console.error("Publish error:", error);
-                alert("Failed to publish product: " + error.message);
+                alert("Failed to save product: " + error.message);
             } finally {
-                btn.innerText = "Publish to Store Catalog";
                 btn.disabled = false;
             }
         });
+
+        // Load Product Data into Form for Editing
+        window.editProduct = (id) => {
+            const p = productsCache[id];
+            if (!p) return;
+
+            document.getElementById('edit-doc-id').value = id;
+            document.getElementById('p-name').value = p.name || '';
+            document.getElementById('p-cat').value = p.category || 'Crochet Apparel';
+            document.getElementById('p-price').value = p.priceNPR || 0;
+            document.getElementById('p-tag').value = p.tag || 'Bestseller';
+            document.getElementById('p-img').value = (p.images && p.images[0]) ? p.images[0] : '';
+            document.getElementById('p-desc').value = p.description || '';
+
+            document.getElementById('form-title-text').innerText = "Edit Product";
+            document.getElementById('form-icon').className = "fa-solid fa-pen-to-square text-amber-600";
+            document.getElementById('submit-btn').innerText = "Update Product";
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Reset Form to Default Add Mode
+        window.resetForm = () => {
+            document.getElementById('add-product-form').reset();
+            document.getElementById('edit-doc-id').value = '';
+            document.getElementById('form-title-text').innerText = "Add New Product";
+            document.getElementById('form-icon').className = "fa-solid fa-plus-circle text-amber-600";
+            document.getElementById('submit-btn').innerText = "Publish to Store Catalog";
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        };
 
         // Delete Product
         window.deleteProduct = async (id) => {
@@ -179,33 +218,45 @@
             await updateDoc(doc(db, "orders", id), { status });
         };
 
-        // Real-time Inventory & Orders Sync
+        // Real-time Inventory Listener
         onSnapshot(collection(db, "products"), snap => {
             const list = document.getElementById('admin-product-list');
             document.getElementById('stat-products').innerText = snap.size;
+            productsCache = {};
+
             if(snap.empty) {
                 list.innerHTML = `<p class="text-xs text-zinc-400 py-6 text-center">No products in store yet.</p>`;
                 return;
             }
+            
             list.innerHTML = '';
             snap.forEach(d => {
                 const p = d.data();
+                productsCache[d.id] = p;
+                
                 const div = document.createElement('div');
                 div.className = "flex items-center justify-between p-3 rounded-2xl bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-800/50";
                 div.innerHTML = `
                     <div class="flex items-center space-x-3">
-                        <img src="${p.images[0]}" class="w-12 h-12 rounded-xl object-cover" onerror="this.src='https://via.placeholder.com/150'">
+                        <img src="${(p.images && p.images[0]) ? p.images[0] : ''}" class="w-12 h-12 rounded-xl object-cover" onerror="this.src='https://via.placeholder.com/150'">
                         <div>
-                            <div class="text-xs font-bold">${p.name}</div>
-                            <div class="text-[10px] text-amber-600 font-semibold">Rs. ${p.priceNPR.toLocaleString()} • ${p.category}</div>
+                            <div class="text-xs font-bold">${p.name || 'Untitled'}</div>
+                            <div class="text-[10px] text-amber-600 font-semibold">Rs. ${(p.priceNPR || 0).toLocaleString()} • ${p.category || 'General'}</div>
                         </div>
                     </div>
-                    <button onclick="deleteProduct('${d.id}')" class="px-3 py-1.5 rounded-xl bg-rose-500/10 text-rose-600 text-xs font-bold hover:bg-rose-500 hover:text-white transition-all">Delete</button>
+                    <div class="flex items-center space-x-1.5">
+                        <button onclick="editProduct('${d.id}')" class="px-2.5 py-1.5 rounded-xl bg-amber-500/10 text-amber-600 text-xs font-bold hover:bg-amber-500 hover:text-white transition-all">Edit</button>
+                        <button onclick="deleteProduct('${d.id}')" class="px-2.5 py-1.5 rounded-xl bg-rose-500/10 text-rose-600 text-xs font-bold hover:bg-rose-500 hover:text-white transition-all">Delete</button>
+                    </div>
                 `;
                 list.appendChild(div);
             });
+        }, error => {
+            console.error("Firestore Products Listener Error:", error);
+            document.getElementById('admin-product-list').innerHTML = `<p class="text-xs text-rose-500 py-4 text-center">Error loading inventory: ${error.message}</p>`;
         });
 
+        // Real-time Orders Listener
         onSnapshot(query(collection(db, "orders"), orderBy("timestamp", "desc")), snap => {
             const tbody = document.getElementById('orders-table-body');
             let orders = [];
@@ -224,7 +275,7 @@
             tbody.innerHTML = orders.map(o => `
                 <tr class="hover:bg-white/30 dark:hover:bg-zinc-800/30">
                     <td class="p-3.5 font-mono font-bold text-amber-600">${o.id}</td>
-                    <td class="p-3.5 font-bold">${o.customerName}<br><span class="text-[10px] text-zinc-500 font-normal">${o.phone}</span></td>
+                    <td class="p-3.5 font-bold">${o.customerName || 'N/A'}<br><span class="text-[10px] text-zinc-500 font-normal">${o.phone || ''}</span></td>
                     <td class="p-3.5">${(o.items || []).map(i => `${i.name} (x${i.qty})`).join(', ')}</td>
                     <td class="p-3.5 font-bold">Rs. ${(o.totalAmount || 0).toLocaleString()}</td>
                     <td class="p-3.5">
@@ -238,6 +289,8 @@
                     </td>
                 </tr>
             `).join('');
+        }, error => {
+            console.error("Firestore Orders Listener Error:", error);
         });
     </script>
 </body>
