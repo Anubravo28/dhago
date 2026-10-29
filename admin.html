@@ -20,7 +20,7 @@
 
     <header class="fixed top-0 inset-x-0 z-40 glass-hdr h-20 flex items-center justify-between px-6 sm:px-8">
         <div class="flex items-center space-x-3">
-            <img src="logo.jpeg" alt="Logo" class="w-10 h-10 rounded-2xl object-cover shadow-lg">
+            <img src="logo.png" alt="Logo" class="w-10 h-10 rounded-2xl object-cover shadow-lg">
             <div>
                 <span class="text-lg font-extrabold bg-gradient-to-r from-amber-600 to-rose-600 bg-clip-text text-transparent">Sio Dhago Admin</span>
                 <p class="text-[10px] text-zinc-500">Live Products & Orders Control Center</p>
@@ -87,8 +87,8 @@
                         </div>
                     </div>
                     <div>
-                        <label for="p-file" class="text-[11px] font-bold block mb-1">Upload Image from Device</label>
-                        <input type="file" id="p-file" name="p-file" accept="image/*" required class="w-full text-xs p-2 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-white hover:file:bg-amber-700 cursor-pointer">
+                        <label for="p-img" class="text-[11px] font-bold block mb-1">Image URL Link</label>
+                        <input type="url" id="p-img" name="p-img" required placeholder="https://images.unsplash.com/photo-..." class="w-full text-xs p-3 rounded-xl bg-white/50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:outline-none">
                     </div>
                     <div>
                         <label for="p-desc" class="text-[11px] font-bold block mb-1">Description</label>
@@ -131,43 +131,25 @@
         import { firebaseConfig } from "./firebase-config.js";
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const storage = getStorage(app);
 
-        // Add Product Handler with Device Image Upload
+        // Add Product Handler via Image URL
         document.getElementById('add-product-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
-            btn.innerText = "Uploading Image & Publishing...";
+            btn.innerText = "Publishing...";
             btn.disabled = true;
 
             try {
-                const fileInput = document.getElementById('p-file');
-                const file = fileInput.files[0];
-                
-                if (!file) {
-                    alert("Please select an image file from your device.");
-                    btn.innerText = "Publish to Store Catalog";
-                    btn.disabled = false;
-                    return;
-                }
-
-                // 1. Upload image to Firebase Storage
-                const storageRef = ref(storage, `products/${Date.now()}_${file.name}`);
-                const snapshot = await uploadBytes(storageRef, file);
-                const downloadURL = await getDownloadURL(snapshot.ref);
-
-                // 2. Save product metadata & image URL to Firestore
                 const id = 'prod_' + Date.now();
                 const newProduct = {
                     name: document.getElementById('p-name').value,
                     category: document.getElementById('p-cat').value,
                     priceNPR: Number(document.getElementById('p-price').value),
                     tag: document.getElementById('p-tag').value,
-                    images: [downloadURL],
+                    images: [document.getElementById('p-img').value],
                     description: document.getElementById('p-desc').value,
                     sizes: ["Standard"],
                     colors: ["#C2410C", "#D97706"]
@@ -177,7 +159,7 @@
                 alert("Product published to store successfully!");
                 e.target.reset();
             } catch (error) {
-                console.error("Upload error:", error);
+                console.error("Publish error:", error);
                 alert("Failed to publish product: " + error.message);
             } finally {
                 btn.innerText = "Publish to Store Catalog";
@@ -212,7 +194,7 @@
                 div.className = "flex items-center justify-between p-3 rounded-2xl bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-800/50";
                 div.innerHTML = `
                     <div class="flex items-center space-x-3">
-                        <img src="${p.images[0]}" class="w-12 h-12 rounded-xl object-cover">
+                        <img src="${p.images[0]}" class="w-12 h-12 rounded-xl object-cover" onerror="this.src='https://via.placeholder.com/150'">
                         <div>
                             <div class="text-xs font-bold">${p.name}</div>
                             <div class="text-[10px] text-amber-600 font-semibold">Rs. ${p.priceNPR.toLocaleString()} • ${p.category}</div>
